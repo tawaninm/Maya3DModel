@@ -1,0 +1,62 @@
+# ==============================================================================
+# Git Ignore - Maya 3D Model & Animation Repository
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Ignore Unorganized Legacy Files & Directories in Root
+# ------------------------------------------------------------------------------
+/AnimationGit/
+/.mayaSwatches/
+/Backrooms_Textures
+/Meshy_AI_Buff_Blobbell_0821154423_texture_fbx
+/docs/
+/images/
+/movies/
+/raw_assets/
+/scenes/
+/scripts/
+/sourceimages/
+/substance/
+/Backrooms_Furniture_Scene.ma
+/Backrooms_Furniture_Scene.mb
+/MonsterMain.mb
+/workspace.mel
+
+# ------------------------------------------------------------------------------
+# 2. Autodesk Maya & Arnold Render Engine Caches (Recursive)
+# ------------------------------------------------------------------------------
+**/.mayaSwatches/
+*.swatches
+**/tmp/
+*.tmp
+*.bak
+*~
+*.swp
+*.log
+*.tx
+
+# ------------------------------------------------------------------------------
+# 3. Python Bytecode & Cache
+# ------------------------------------------------------------------------------
+**/__pycache__/
+*.pyc
+*.pyo
+
+# ------------------------------------------------------------------------------
+# 4. Large Heavy Binaries (> 100MB Blocked by GitHub)
+# ------------------------------------------------------------------------------
+*.avi
+*.glb
+*.zip
+*.tar
+*.gz
+
+# ------------------------------------------------------------------------------
+# 5. OS & Editor Artifacts
+# ------------------------------------------------------------------------------
+Thumbs.db
+ehthumbs.db
+.DS_Store
+desktop.ini
+*.vscode/
+*.idea/

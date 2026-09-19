@@ -1,0 +1,26 @@
+newmtl Emission_Red
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+
+newmtl Exit_Sign
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Exit_Sign.png
+
+newmtl Exit_Traslucent
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Exit_Traslucent.png
+

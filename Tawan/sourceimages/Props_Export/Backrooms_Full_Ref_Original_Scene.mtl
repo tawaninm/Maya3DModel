@@ -1,0 +1,251 @@
+newmtl ArmChair_1
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_ArmChair_1.png
+
+newmtl Ceiling_1
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Ceiling_1.png
+
+newmtl Wall_3
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Wall_3.png
+
+newmtl Emission_Red
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+
+newmtl Moquette_2
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Moquette_2.png
+
+newmtl Exit_Traslucent
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Exit_Traslucent.png
+
+newmtl Translucent
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Translucent.png
+
+newmtl Wall_1
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Wall_1.png
+
+newmtl Traslucent
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Traslucent.png
+
+newmtl Sensor
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Sensor.png
+
+newmtl Wood
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Wood.png
+
+newmtl Socket_1
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Socket_1.png
+
+newmtl Ceiling_2
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Ceiling_2.png
+
+newmtl Ceiling_Lamp
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Ceiling_Lamp.png
+
+newmtl Window_1
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Window_1.png
+
+newmtl Wall_2
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Wall_2.png
+
+newmtl Vent_1
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Vent_1.png
+
+newmtl Moquette_4
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Moquette_4.png
+
+newmtl Exit_Door
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Exit_Door.png
+
+newmtl Exit_Sign
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Exit_Sign.png
+
+newmtl Moquette_1
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Moquette_1.png
+
+newmtl Moquette_3
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Moquette_3.png
+
+newmtl Ceiling_4
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Ceiling_4.png
+
+newmtl Withe
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Withe.png
+
+newmtl Ceiling_3
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Ceiling_3.png
+
+newmtl Furniture_1
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Furniture_1.png
+
+newmtl Wall_4
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Wall_4.png
+
+newmtl Lamp
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Lamp.png
+

@@ -1,0 +1,36 @@
+newmtl Moquette_1
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Moquette_1.png
+
+newmtl Moquette_2
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Moquette_2.png
+
+newmtl Moquette_3
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Moquette_3.png
+
+newmtl Moquette_4
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.2 0.2 0.2
+Ns 20.0
+d 1.0
+illum 2
+map_Kd ../Backrooms_Textures/Tex_Moquette_4.png
+
