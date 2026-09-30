@@ -1,0 +1,348 @@
+{
+  "modified_shaders_count": 12,
+  "untouched_prop_shaders_count": 16,
+  "triplanar_scale": 0.005,
+  "triplanar_coord_space": "world",
+  "modified_wall_carpet_ceiling": [
+    {
+      "shading_group": "Wall_1",
+      "shader": "M_Wall_1",
+      "category": "wall",
+      "file_node": "File_Wall_1",
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wall_1.png",
+      "triplanar_node": "aiTriplanar_M_Wall_1",
+      "coordSpace": "world",
+      "scale": [
+        0.004999999888241291,
+        0.004999999888241291,
+        0.004999999888241291
+      ],
+      "status": "connected_aiTriplanar_world"
+    },
+    {
+      "shading_group": "Wall_3",
+      "shader": "M_Wall_3",
+      "category": "wall",
+      "file_node": "File_Wall_3",
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wall_3.png",
+      "triplanar_node": "aiTriplanar_M_Wall_3",
+      "coordSpace": "world",
+      "scale": [
+        0.004999999888241291,
+        0.004999999888241291,
+        0.004999999888241291
+      ],
+      "status": "connected_aiTriplanar_world"
+    },
+    {
+      "shading_group": "Wall_5",
+      "shader": "M_Wall_5",
+      "category": "wall",
+      "file_node": "File_Wall_5",
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wall_1.png",
+      "triplanar_node": "aiTriplanar_M_Wall_5",
+      "coordSpace": "world",
+      "scale": [
+        0.004999999888241291,
+        0.004999999888241291,
+        0.004999999888241291
+      ],
+      "status": "connected_aiTriplanar_world"
+    },
+    {
+      "shading_group": "Wall_7",
+      "shader": "M_Wall_7",
+      "category": "wall",
+      "file_node": "File_Wall_7",
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wall_1.png",
+      "triplanar_node": "aiTriplanar_M_Wall_7",
+      "coordSpace": "world",
+      "scale": [
+        0.004999999888241291,
+        0.004999999888241291,
+        0.004999999888241291
+      ],
+      "status": "connected_aiTriplanar_world"
+    },
+    {
+      "shading_group": "Moquette_1",
+      "shader": "M_Moquette_1",
+      "category": "carpet",
+      "file_node": "File_Moquette_1",
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Moquette_1.png",
+      "triplanar_node": "aiTriplanar_M_Moquette_1",
+      "coordSpace": "world",
+      "scale": [
+        0.004999999888241291,
+        0.004999999888241291,
+        0.004999999888241291
+      ],
+      "status": "connected_aiTriplanar_world"
+    },
+    {
+      "shading_group": "Moquette_3",
+      "shader": "M_Moquette_3",
+      "category": "carpet",
+      "file_node": "File_Moquette_3",
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Moquette_3.png",
+      "triplanar_node": "aiTriplanar_M_Moquette_3",
+      "coordSpace": "world",
+      "scale": [
+        0.004999999888241291,
+        0.004999999888241291,
+        0.004999999888241291
+      ],
+      "status": "connected_aiTriplanar_world"
+    },
+    {
+      "shading_group": "Moquette_5",
+      "shader": "M_Moquette_5",
+      "category": "carpet",
+      "file_node": "File_Moquette_5",
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Moquette_1.png",
+      "triplanar_node": "aiTriplanar_M_Moquette_5",
+      "coordSpace": "world",
+      "scale": [
+        0.004999999888241291,
+        0.004999999888241291,
+        0.004999999888241291
+      ],
+      "status": "connected_aiTriplanar_world"
+    },
+    {
+      "shading_group": "Moquette_7",
+      "shader": "M_Moquette_7",
+      "category": "carpet",
+      "file_node": "File_Moquette_7",
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Moquette_1.png",
+      "triplanar_node": "aiTriplanar_M_Moquette_7",
+      "coordSpace": "world",
+      "scale": [
+        0.004999999888241291,
+        0.004999999888241291,
+        0.004999999888241291
+      ],
+      "status": "connected_aiTriplanar_world"
+    },
+    {
+      "shading_group": "Ceiling_1",
+      "shader": "M_Ceiling_1",
+      "category": "ceiling",
+      "file_node": "File_Ceiling_1",
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_1.png",
+      "triplanar_node": "aiTriplanar_M_Ceiling_1",
+      "coordSpace": "world",
+      "scale": [
+        0.004999999888241291,
+        0.004999999888241291,
+        0.004999999888241291
+      ],
+      "status": "connected_aiTriplanar_world"
+    },
+    {
+      "shading_group": "Ceiling_2",
+      "shader": "M_Ceiling_2",
+      "category": "ceiling",
+      "file_node": "File_Ceiling_2",
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_2.png",
+      "triplanar_node": "aiTriplanar_M_Ceiling_2",
+      "coordSpace": "world",
+      "scale": [
+        0.004999999888241291,
+        0.004999999888241291,
+        0.004999999888241291
+      ],
+      "status": "connected_aiTriplanar_world"
+    },
+    {
+      "shading_group": "Ceiling_5",
+      "shader": "M_Ceiling_5",
+      "category": "ceiling",
+      "file_node": "File_Ceiling_5",
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_1.png",
+      "triplanar_node": "aiTriplanar_M_Ceiling_5",
+      "coordSpace": "world",
+      "scale": [
+        0.004999999888241291,
+        0.004999999888241291,
+        0.004999999888241291
+      ],
+      "status": "connected_aiTriplanar_world"
+    },
+    {
+      "shading_group": "Ceiling_7",
+      "shader": "M_Ceiling_7",
+      "category": "ceiling",
+      "file_node": "File_Ceiling_7",
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_1.png",
+      "triplanar_node": "aiTriplanar_M_Ceiling_7",
+      "coordSpace": "world",
+      "scale": [
+        0.004999999888241291,
+        0.004999999888241291,
+        0.004999999888241291
+      ],
+      "status": "connected_aiTriplanar_world"
+    }
+  ],
+  "untouched_props": [
+    {
+      "shading_group": "ArmChair_1",
+      "shader": "M_ArmChair_1",
+      "incoming_nodes": [
+        "File_ArmChair_1"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_ArmChair_1.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Ceiling_Lamp",
+      "shader": "M_Ceiling_Lamp",
+      "incoming_nodes": [
+        "File_Ceiling_Lamp"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_Lamp.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Emission_Red",
+      "shader": "M_Emission_Red",
+      "incoming_nodes": [],
+      "texture": "None/Color",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Exit_Door",
+      "shader": "M_Exit_Door",
+      "incoming_nodes": [
+        "File_Exit_Door"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Exit_Door.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Exit_Sign",
+      "shader": "M_Exit_Sign",
+      "incoming_nodes": [
+        "File_Exit_Sign"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Exit_Sign.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Exit_Traslucent",
+      "shader": "M_Exit_Traslucent",
+      "incoming_nodes": [
+        "File_Exit_Traslucent"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Exit_Traslucent.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Furniture_1",
+      "shader": "M_Furniture_1",
+      "incoming_nodes": [
+        "File_Furniture_1"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Furniture_1.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Lamp",
+      "shader": "M_Lamp",
+      "incoming_nodes": [
+        "File_Lamp"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Lamp.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Sensor",
+      "shader": "M_Sensor",
+      "incoming_nodes": [
+        "File_Sensor"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Sensor.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Socket_1",
+      "shader": "M_Socket_1",
+      "incoming_nodes": [
+        "File_Socket_1"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Socket_1.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Translucent",
+      "shader": "M_Translucent",
+      "incoming_nodes": [
+        "File_Translucent"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Translucent.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Traslucent",
+      "shader": "M_Traslucent",
+      "incoming_nodes": [
+        "File_Traslucent"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Traslucent.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Vent_1",
+      "shader": "M_Vent_1",
+      "incoming_nodes": [
+        "File_Vent_1"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Vent_1.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Window_1",
+      "shader": "M_Window_1",
+      "incoming_nodes": [
+        "File_Window_1"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Window_1.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Withe",
+      "shader": "M_Withe",
+      "incoming_nodes": [
+        "File_Withe"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Withe.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    },
+    {
+      "shading_group": "Wood",
+      "shader": "M_Wood",
+      "incoming_nodes": [
+        "File_Wood"
+      ],
+      "texture": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wood.png",
+      "has_triplanar": false,
+      "status": "untouched_uv_mapping"
+    }
+  ]
+}
