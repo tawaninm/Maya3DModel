@@ -1,0 +1,549 @@
+{
+  "scene": "D:\\projects\\ProjectAnimation\\scenes\\Backrooms\\Backrooms_Env_v2.mb",
+  "viewTransform": "ACES 1.0 SDR-video (sRGB)",
+  "colorManagementEnabled": true,
+  "total_file_nodes": 54,
+  "non_raw_utility_maps_count": 0,
+  "file_nodes": [
+    {
+      "node": "ArmChair_2F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_ArmChair_1.png",
+      "connected_channels": [
+        "ArmChair_2.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Ceiling_3F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_2.png",
+      "connected_channels": [
+        "Ceiling_3.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Ceiling_4F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_1.png",
+      "connected_channels": [
+        "Ceiling_4.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Ceiling_6F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_3.png",
+      "connected_channels": [
+        "Ceiling_6.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Ceiling_8F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_4.png",
+      "connected_channels": [
+        "Ceiling_8.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Ceiling_Lamp1F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_Lamp.png",
+      "connected_channels": [
+        "Ceiling_Lamp1.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Exit_Door1F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Exit_Door.png",
+      "connected_channels": [
+        "Exit_Door1.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Exit_Sign1F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Exit_Sign.png",
+      "connected_channels": [
+        "Exit_Sign1.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Exit_Traslucent1F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Exit_Traslucent.png",
+      "connected_channels": [
+        "Exit_Traslucent1.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_ArmChair_1",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_ArmChair_1.png",
+      "connected_channels": [
+        "M_ArmChair_1.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Ceiling_1",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_1.png",
+      "connected_channels": [
+        "M_Ceiling_1.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Ceiling_2",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_2.png",
+      "connected_channels": [
+        "M_Ceiling_2.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Ceiling_5",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_1.png",
+      "connected_channels": [
+        "M_Ceiling_5.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Ceiling_7",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_1.png",
+      "connected_channels": [
+        "M_Ceiling_7.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Ceiling_Lamp",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Ceiling_Lamp.png",
+      "connected_channels": [
+        "M_Ceiling_Lamp.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Exit_Door",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Exit_Door.png",
+      "connected_channels": [
+        "M_Exit_Door.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Exit_Sign",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Exit_Sign.png",
+      "connected_channels": [
+        "M_Exit_Sign.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Exit_Traslucent",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Exit_Traslucent.png",
+      "connected_channels": [
+        "M_Exit_Traslucent.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Furniture_1",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Furniture_1.png",
+      "connected_channels": [
+        "M_Furniture_1.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Lamp",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Lamp.png",
+      "connected_channels": [
+        "M_Lamp.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Moquette_1",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Moquette_1.png",
+      "connected_channels": [
+        "M_Moquette_1.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Moquette_3",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Moquette_3.png",
+      "connected_channels": [
+        "M_Moquette_3.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Moquette_5",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Moquette_1.png",
+      "connected_channels": [
+        "M_Moquette_5.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Moquette_7",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Moquette_1.png",
+      "connected_channels": [
+        "M_Moquette_7.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Sensor",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Sensor.png",
+      "connected_channels": [
+        "M_Sensor.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Socket_1",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Socket_1.png",
+      "connected_channels": [
+        "M_Socket_1.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Translucent",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Translucent.png",
+      "connected_channels": [
+        "M_Translucent.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Traslucent",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Traslucent.png",
+      "connected_channels": [
+        "M_Traslucent.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Vent_1",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Vent_1.png",
+      "connected_channels": [
+        "M_Vent_1.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Wall_1",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wall_1.png",
+      "connected_channels": [
+        "M_Wall_1.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Wall_3",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wall_3.png",
+      "connected_channels": [
+        "M_Wall_3.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Wall_5",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wall_1.png",
+      "connected_channels": [
+        "M_Wall_5.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Wall_7",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wall_1.png",
+      "connected_channels": [
+        "M_Wall_7.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Window_1",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Window_1.png",
+      "connected_channels": [
+        "M_Window_1.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Withe",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Withe.png",
+      "connected_channels": [
+        "M_Withe.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "File_Wood",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wood.png",
+      "connected_channels": [
+        "M_Wood.baseColor"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Furniture_2F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Furniture_1.png",
+      "connected_channels": [
+        "Furniture_2.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Lamp1F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Lamp.png",
+      "connected_channels": [
+        "Lamp1.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Moquette_2F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Moquette_1.png",
+      "connected_channels": [
+        "Moquette_2.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Moquette_4F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Moquette_2.png",
+      "connected_channels": [
+        "Moquette_4.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Moquette_6F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Moquette_3.png",
+      "connected_channels": [
+        "Moquette_6.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Moquette_8F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Moquette_4.png",
+      "connected_channels": [
+        "Moquette_8.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Sensor1F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Sensor.png",
+      "connected_channels": [
+        "Sensor1.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Socket_2F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Socket_1.png",
+      "connected_channels": [
+        "Socket_2.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Translucent1F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Translucent.png",
+      "connected_channels": [
+        "Translucent1.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Traslucent1F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Traslucent.png",
+      "connected_channels": [
+        "Traslucent1.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Vent_2F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Vent_1.png",
+      "connected_channels": [
+        "Vent_2.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Wall_2F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wall_1.png",
+      "connected_channels": [
+        "Wall_2.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Wall_4F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wall_2.png",
+      "connected_channels": [
+        "Wall_4.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Wall_6F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wall_4.png",
+      "connected_channels": [
+        "Wall_6.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Wall_8F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wall_3.png",
+      "connected_channels": [
+        "Wall_8.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Window_2F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Window_1.png",
+      "connected_channels": [
+        "Window_2.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Withe1F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Withe.png",
+      "connected_channels": [
+        "Withe1.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    },
+    {
+      "node": "Wood1F",
+      "texture_path": "D:/projects/ProjectAnimation/Backrooms_Textures/Tex_Wood.png",
+      "connected_channels": [
+        "Wood1.color"
+      ],
+      "is_raw_channel": false,
+      "colorSpace": "sRGB",
+      "valid": true
+    }
+  ]
+}
