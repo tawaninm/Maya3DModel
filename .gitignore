@@ -20,6 +20,11 @@
 /Backrooms_Furniture_Scene.ma
 /Backrooms_Furniture_Scene.mb
 /MonsterMain.mb
+/MainCharacter.fbx
+/run_health_check.bat
+/run_pipeline.bat
+maya_*_std*.txt
+pipeline_*.log
 /workspace.mel
 
 # ------------------------------------------------------------------------------

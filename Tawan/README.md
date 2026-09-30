@@ -29,6 +29,7 @@ Tawan/
 │   └── ModelRef/                                 # ภาพอ้างอิงสำหรับการขึ้นรูปโมเดล
 ├── scripts/
 │   ├── render_actual_chase_mp4.py                # สคริปต์เรนเดอร์ Maya Arnold และประกอบไฟล์ MP4
+│   ├── fix_mainchar_chase_rig.py                 # สคริปต์สร้าง Rig และแอนิเมชันตัวเอก (Charlie) ในฉากไล่ล่า
 │   ├── setup_chase_storyboard_scene.py           # สคริปต์จัดฉากและคีย์เฟรมฉากไล่ล่า
 │   ├── build_backrooms_scene.py                  # สคริปต์สร้างห้องและจัดวางสถาปัตยกรรม
 │   ├── build_backrooms_lighting_scene.py         # สคริปต์จัดแสงไฟ Arnold Area Lights
@@ -43,6 +44,7 @@ Tawan/
 │   ├── Backrooms_Monster_Chase_Full.mp4          # วิดีโอฉากไล่ล่าสมบูรณ์ (1.04 MB, H.264 640x360 24fps)
 │   └── Backrooms_Chase_Animatic_Full_120f.mp4    # คลิปแอนิเมติก 120 เฟรม (103 KB)
 ├── docs/
+│   ├── sec01_group05_30_09_2026.pdf              # สไลด์นำเสนอความคืบหน้าฉบับล่าสุด (30/09/2026, 35 หน้า)
 │   ├── 12_project_presentation.pdf               # สไลด์นำเสนอความคืบหน้าสัปดาห์ที่ 12
 │   ├── BACKROOMS_PROP_MODELING_GUIDE.md          # สเปกและคู่มือการสร้างพร็อพ Backrooms
 │   ├── CHASE_SCENE_RENDER_SPEC.md                # สเปกเทคนิคการเรนเดอร์ฉากไล่ล่า

@@ -6,9 +6,18 @@
 
 | สมาชิก | โฟลเดอร์ประจำตัว | ขอบเขตงานที่รับผิดชอบ |
 |---|---|---|
-| **ธนัทภัทร พรหมทอง (Tawan)** | [`Tawan/`](./Tawan/) | Monster Character Model & Rig, Backrooms Modular Architecture, Props, Lighting, Chase Animation |
-| **นันท์นภัส ชินศิริโชคชัย** | `Nannaphat/` | Main Character (Charlie), Location Bedroom |
-| **วสวัตติ์ เนตร์พันธ์** | `Wasawat/` | Train Station Environment & Additional Props |
+| **ธนัทภัทร พรหมทอง (Tawan)** | [`Tawan/`](./Tawan/) | Monster Character Model & Rig, Backrooms Modular Architecture, Props, Lighting, Chase Animation (เฟรม 5–14) |
+| **นันท์นภัส ชินศิริโชคชัย** | [`Nannapas/`](./Nannapas/) | Main Character (Charlie), Location Bedroom & Furniture, Animation (เฟรม 1–4) |
+| **วสวัตติ์ เนตร์พันธ์** | `Wasawat/` | Old Man Model & Rig, Train Station Environment & Props, Walking Cycle & Jumpscare (เฟรม 15–20) |
+
+---
+
+## เอกสารนำเสนอและความคืบหน้าโครงการ
+
+- **เอกสารนำเสนอความคืบหน้าล่าสุด (Week 12 - 30/09/2026):** [`docs/sec01_group05_30_09_2026.pdf`](./docs/sec01_group05_30_09_2026.pdf)
+- **วิดีโอตัวอย่างแอนิเมติก (Preview Scene):** [YouTube Link](https://youtu.be/3AwjYuhbZ9c)
+- **ความยาวรวมแอนิเมชัน:** 44 วินาที (20 เฟรมสตอรีบอร์ด)
+- **สถานะปัจจุบัน (30 กันยายน 2569):** โมเดลหลัก 3 ตัว (Charlie, Monster, Old man) และฉากทั้ง 3 แห่ง (Bedroom, Backrooms, Train Station) ขึ้นรูปและใส่ Rigging ครบถ้วน อยู่ระหว่างการจัดแอนิเมชัน การเคลื่อนไหว จัดแสงไฟ Arnold และเตรียมเรนเดอร์
 
 ---
 
