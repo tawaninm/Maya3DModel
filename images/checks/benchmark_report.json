@@ -1,0 +1,11 @@
+{
+  "renderer": "Arnold GPU",
+  "render_device": 1,
+  "resolution": "1920x1080",
+  "denoiser": "OptiX (aiImagerDenoiserOptix)",
+  "duration_seconds": 86.99,
+  "duration_under_60s": false,
+  "decision_Q6": "ช็อต 05, 13, 14 ใช้ Hardware 2.0 ส่วนช็อตอื่นใช้ Arnold (เวลาเกิน 60 วินาทีต่อเฟรม)",
+  "image_path": "D:\\projects\\ProjectAnimation\\images\\checks\\benchmark_gpu_1080p.png",
+  "image_size_mb": 0.953
+}
