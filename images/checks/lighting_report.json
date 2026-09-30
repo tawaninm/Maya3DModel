@@ -1,0 +1,32 @@
+{
+  "lights": {
+    "pointLight_count": 0,
+    "aiSkyDomeLight_count": 0,
+    "aiAreaLight_count": 54,
+    "colorTemperature": 4000.0,
+    "master_exposure_Set_A": 4.5,
+    "master_exposure_Set_B": 3.0
+  },
+  "camera": {
+    "name": "CAM_Light_Test",
+    "position": [
+      -1600.0,
+      95.0,
+      430.0
+    ],
+    "distance_to_floor": 106.9008,
+    "distance_to_ceiling": 137.6817,
+    "floor_dist_less_than_ceiling": true,
+    "inside_env_bbox": true
+  },
+  "renders": {
+    "light_A": {
+      "path": "D:\\projects\\ProjectAnimation\\images\\checks\\light_A_test.png",
+      "size_mb": 0.44017696380615234
+    },
+    "light_B": {
+      "path": "D:\\projects\\ProjectAnimation\\images\\checks\\light_B_test.png",
+      "size_mb": 0.44054126739501953
+    }
+  }
+}
