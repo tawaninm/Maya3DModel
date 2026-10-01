@@ -5,7 +5,7 @@ Duration: 2 seconds = 48 frames (24 fps).
 Animation: Picking_Up_Object.fbx, source frames 0-48 (hand reaches f0-24, holds f24-32, pulls back f32-48) at about 1:1 speed.
         The tail of the clip (hand dropping beside the hips) is cut: the chibi belly hides the camcorder from the POV camera there.
 Camera: POV eye level (Tawan chose option A, 2026-10-01): position follows Charlie's eye point (head joint collapsed), aim tracks the camcorder, handheld shake baked into the camera keys. 28 mm lens.
-Lighting: Preset A (exposure 13) + the same desk key light as Shot 07 (exposure 15.5, 6500K).
+Lighting: Preset A (exposure 13) + two steady fill lights on the desk (overhead panel + under-desktop lamp), bright desk per Tawan 2026-10-01.
 Rerunnable: restores scenes_backup_2026-10-01/Shot08_before_t09.mb before every run.
 """
 import math
@@ -45,8 +45,7 @@ CAM_FORWARD = 4.0            # camera sits this far ahead of the eye point (head
 SHELF_LIP_X = -217.3         # front edge of the desk unit (ray-cast 2026-10-01); the camcorder rests on the lower shelf (y 73.1) under the desktop (y 108.9-111.5)
 AIM_UP = 9.0                 # aim a little above the camcorder centre so it sits in the lower part of frame
 SHAKE_ROT, SHAKE_TRANS = 0.6, 0.6
-KEY_EXP_SHELF, KEY_EXP_OPEN = 15.5, 14.5   # 15.5 = Shot 07 value (camcorder under the desktop). 13.0 left frame 38 at mean 7.7/255 (too dark), 15.5 clipped the sweater to white; 14.5 is the middle
-KEY_RAMP = (22, 34)
+FILL_OVERHEAD_EXP, FILL_LAMP_EXP = 12.0, 11.5   # exposure of the overhead panel and of the under-desktop lamp (tuned with test frames 1, 22, 38, 44, 48)
 
 os.makedirs(BACKUP_DIR, exist_ok=True)
 bk = os.path.join(BACKUP_DIR, "Shot08_before_t09.mb")
@@ -265,25 +264,43 @@ for f in (1, 8, 15, GRAB_DST, 30, 38, 44, N_FRAMES):
         worst = min(worst, min(cp.distanceTo(om.MPoint(v[i], v[i + 1], v[i + 2])) for i in range(0, len(v), 3)))
 print("L| nearest Charlie vertex to camera over checked frames:", round(worst, 2), "(near clip %.1f)" % NEAR_CLIP)
 
-# 7. Desk key light (same rig as Shot 07, for continuity) and Arnold options
-light_name = "Shot08_Desk_KeyLight"
-if not cmds.objExists(light_name):
-    ls = cmds.shadingNode("aiAreaLight", asLight=True, name=light_name)
-    lt = cmds.listRelatives(ls, parent=True)[0] if cmds.nodeType(ls) != "transform" else ls
-else:
-    ls = light_name if cmds.nodeType(light_name) == "aiAreaLight" else cmds.listRelatives(light_name, shapes=True)[0]
-    lt = cmds.listRelatives(ls, parent=True)[0]
-cmds.xform(lt, ws=True, t=[-220.0, 180.0, 195.0], ro=[-60, 30, 0], s=[140.0, 140.0, 1.0])
-cmds.cutKey(ls, attribute="exposure", clear=True)
-cmds.setAttr(ls + ".exposure", KEY_EXP_SHELF)
-for kf, kv in ((1, KEY_EXP_SHELF), (KEY_RAMP[0], KEY_EXP_SHELF), (KEY_RAMP[1], KEY_EXP_OPEN), (N_FRAMES, KEY_EXP_OPEN)):
-    cmds.setKeyframe(ls, attribute="exposure", time=kf, value=kv)
-cmds.keyTangent(ls, attribute="exposure", inTangentType="linear", outTangentType="linear")
-cmds.setAttr(ls + ".intensity", 50.0)
-cmds.setAttr(ls + ".aiColorTemperature", 6500.0)
-cmds.setAttr(ls + ".aiUseColorTemperature", 1)
-if "defaultLightSet" not in (cmds.listSets(object=ls) or []):
-    cmds.sets(ls, add="defaultLightSet")
+# 7. Desk lighting. The desk room is lit by almost nothing from the ceiling panels, and the camcorder sits on a shelf under the desktop, so
+# the desk read as black. Tawan (2026-10-01): the desk must be bright, it is inside the Backrooms. Two steady panels (no keyed exposure): one overhead like a
+# ceiling panel and a small lamp under the desktop above the camcorder. Low flank fills were tried and removed: they blew out the desk fascia,
+# Charlie's hand and belly (17-28% of pixels above 240) and made frames render in 143 s.
+def make_area(name, pos, aim, size, exposure):
+    shape_name = name
+    if cmds.objExists(shape_name):
+        cmds.delete(shape_name)
+    shp = cmds.shadingNode("aiAreaLight", asLight=True, name=name)
+    xf = cmds.listRelatives(shp, parent=True)[0] if cmds.nodeType(shp) != "transform" else shp
+    dx, dy, dz = aim[0] - pos[0], aim[1] - pos[1], aim[2] - pos[2]
+    yaw = math.degrees(math.atan2(-dx, -dz))
+    pitch = math.degrees(math.atan2(dy, math.hypot(dx, dz)))
+    cmds.xform(xf, ws=True, t=list(pos), ro=[pitch, yaw, 0.0], s=[size[0], size[1], 1.0])
+    cmds.setAttr(shp + ".exposure", exposure)
+    cmds.setAttr(shp + ".intensity", 50.0)
+    cmds.setAttr(shp + ".aiUseColorTemperature", 1)
+    cmds.setAttr(shp + ".aiColorTemperature", FILL_KELVIN)
+    if "defaultLightSet" not in (cmds.listSets(object=shp) or []):
+        cmds.sets(shp, add="defaultLightSet")
+    # the panels must light the set without showing up as white quads in the picture; shadingNode returns the transform, the shape has our name
+    for a_name in ("aiCamera", "primaryVisibility"):
+        if cmds.attributeQuery(a_name, node=name, exists=True):
+            cmds.setAttr(name + "." + a_name, 0)
+            print("L| light", name, a_name, "= 0")
+    return shp
+
+
+FILL_KELVIN = 6500.0
+make_area("Shot08_Fill_Overhead", (-215.0, 262.0, 190.0), (-215.0, 0.0, 190.0), (130.0, 130.0), FILL_OVERHEAD_EXP)
+# small panel under the desktop right above the camcorder (31 units above the shelf): the shelf top is lit straight on instead of at a grazing angle
+make_area("Shot08_Fill_UnderDeskLamp", (CAMCORDER_POS[0] + 6.0, 104.0, CAMCORDER_POS[2]), (CAMCORDER_POS[0] + 6.0, 0.0, CAMCORDER_POS[2]), (35.0, 35.0), FILL_LAMP_EXP)
+# once the camcorder is out of the cavity the lamp is only 28 units from Charlie's belly and burns it to white (26% of pixels above 240 at frame 48): fade it 2.5 stops between frames 36 and 46
+cmds.cutKey("Shot08_Fill_UnderDeskLamp", attribute="exposure", clear=True)
+for kf, kv in ((1, FILL_LAMP_EXP), (36, FILL_LAMP_EXP), (46, FILL_LAMP_EXP - 2.5), (N_FRAMES, FILL_LAMP_EXP - 2.5)):
+    cmds.setKeyframe("Shot08_Fill_UnderDeskLamp", attribute="exposure", time=kf, value=kv)
+cmds.keyTangent("Shot08_Fill_UnderDeskLamp", attribute="exposure", inTangentType="linear", outTangentType="linear")
 o = "defaultArnoldRenderOptions"
 if cmds.objExists(o):
     cmds.setAttr(o + ".skipLicenseCheck", 0)
