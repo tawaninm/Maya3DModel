@@ -46,6 +46,11 @@ SHELF_LIP_X = -217.3         # front edge of the desk unit (ray-cast 2026-10-01)
 AIM_UP = 9.0                 # aim a little above the camcorder centre so it sits in the lower part of frame
 SHAKE_ROT, SHAKE_TRANS = 0.6, 0.6
 SHELF_TOP_Y = 73.1
+LIFT_START, LIFT_END = GRAB_DST + 2, GRAB_DST + 10   # camcorder rests on the shelf until LIFT_START, is at the held pose by LIFT_END
+HOLD_DIST = 30.0       # held pose: this far in front of the camera (along Charlie's facing)
+HOLD_Y_CANDIDATES = (86.0, 82.0, 78.0)   # highest y with a clear line of sight under the valance
+HOLD_WRIST_RIGHT, HOLD_WRIST_DOWN = 8.0, 7.0   # while lifted the wrist sits lower-right of the camcorder (screen space), so the forearm no longer runs along the view axis and hides it
+HOLD_AIM_UP = -3.0      # aim this far above (negative = below) the held camcorder; below keeps the valance edge out of the top of the frame
 CAVITY_ALBEDO = (0.045, 0.042, 0.035)   # pale warm grey for the cavity faces (0.55 burned 80%+ of the frame to white; the original texels are near black)
 CAVITY_X_MAX = -228.0                # only count hits deeper than the front valance (x -217) so the valance keeps its own texture
 FILL_OVERHEAD_EXP, FILL_LAMP_EXP = 12.0, 11.5   # exposure of the overhead panel and of the under-desktop lamp (tuned with test frames 1, 22, 38, 44, 48)
@@ -107,6 +112,16 @@ info = bake_clip(CLIP, rig_ns="CHARLIE:", src_first=SRC_FIRST, src_last=SRC_LAST
 cmds.playbackOptions(min=1, max=N_FRAMES, animationStartTime=1, animationEndTime=N_FRAMES)
 cmds.cutKey("CHARLIE:*", time=(N_FRAMES + 1, 400), clear=True)
 assert info["frames"] == N_FRAMES and not info["missing_dst_joints"], info
+# The clip's second half (hand pulled to the torso, head leaning over) is not used any more: Charlie holds the camcorder up from LIFT_END to the last
+# frame. Freezing the body pose also keeps the arm IK target reachable (with a moving torso the wrist drifted off the camcorder at frames 44-48).
+for _j in cmds.ls("CHARLIE:mixamorig:*", type="joint"):
+    for _a in ("translateX", "translateY", "translateZ", "rotateX", "rotateY", "rotateZ"):
+        if cmds.listConnections(_j + "." + _a, s=True, d=False):
+            _v = cmds.getAttr(_j + "." + _a, time=LIFT_END)
+            cmds.cutKey(_j, attribute=_a, time=(LIFT_END + 1, N_FRAMES), clear=True)
+            for _f in range(LIFT_END + 1, N_FRAMES + 1):
+                cmds.setKeyframe(_j, attribute=_a, time=_f, value=_v)
+print("L| Charlie pose frozen from frame", LIFT_END)
 print("L| grab frame (dst)", GRAB_DST)
 
 # 3. Camcorder on the desk (Shot 07 pose), Monster hidden
@@ -138,23 +153,13 @@ print("L| Charlie placement", [round(v, 2) for v in (tx, ty, tz)], "lift above f
 # ponytail: the Mixamo clip reaches ~55 units above the floor but the desk top is 85 units up; the body is lifted instead of re-posing the arm.
 # Fine while the feet stay out of frame (checked below); replace with an IK reach if a later shot shows the feet.
 
-# 5. Carry the camcorder: held on the desk until the grab frame, then rigidly attached to the wrist (baked keys)
+# 5. The camcorder stays on the shelf for now (all frames keyed at the desk pose); step 6b lifts it after the grab.
 cmds.currentTime(GRAB_DST)
-offset = desk_matrix * mat(HAND).inverse()
+offset = desk_matrix * mat(HAND).inverse()          # camcorder = offset * wrist  ->  wrist = offset.inverse() * camcorder
 for f in range(1, N_FRAMES + 1):
     cmds.currentTime(f)
-    m = desk_matrix if f < GRAB_DST else offset * mat(HAND)
-    if f >= GRAB_DST:
-        tm = om.MTransformationMatrix(m)
-        tr = tm.translation(om.MSpace.kWorld)
-        # the clip lowers the hand while it is still under the desktop; keep the camcorder above the shelf slab until it passes the lip
-        floor_y = TABLE_TOP_Y - max(0.0, tr.x - SHELF_LIP_X) * 3.0
-        if tr.y < floor_y:
-            tm.setTranslation(om.MVector(tr.x, floor_y, tr.z), om.MSpace.kWorld)
-        m = tm.asMatrix()
-    cmds.xform(VC, ws=True, m=flat(m))
+    cmds.xform(VC, ws=True, m=flat(desk_matrix))
     cmds.setKeyframe(VC, attribute=["translateX", "translateY", "translateZ", "rotateX", "rotateY", "rotateZ"], time=f)
-cmds.filterCurve(VC + ".rotateX", VC + ".rotateY", VC + ".rotateZ", filter="euler")
 
 # 6. POV camera
 cam, grp = "CAM_Shot08", "GRP_CAM_Shot08"
@@ -252,12 +257,34 @@ if drop is None:
     print("L| WARN no clear line of sight found, using max drop")
 print("L| camera drop below eye point", drop, "(0 = eye height)")
 
+
+def hold_point(f, y):
+    """where the lifted camcorder is at frame f: HOLD_DIST in front of the (unshaken) camera, at height y"""
+    p = eyes[f] + forward * CAM_FORWARD - om.MVector(0, drop, 0)
+    return om.MPoint(p.x + forward.x * HOLD_DIST, y, p.z + forward.z * HOLD_DIST)
+
+
+hold_y, _clear = HOLD_Y_CANDIDATES[-1], False
+for _y in HOLD_Y_CANDIDATES:
+    _p0 = eyes[LIFT_END] + forward * CAM_FORWARD - om.MVector(0, drop, 0)
+    if not blocked(om.MPoint(_p0.x, _p0.y, _p0.z), hold_point(LIFT_END, _y)):
+        hold_y, _clear = _y, True
+        break
+print("L| held camcorder height", hold_y, "(clear line of sight)" if _clear else "(WARN: blocked at the lowest candidate)")
+
 char_meshes = [m for m in sorted({cmds.listRelatives(x, parent=True)[0] for x in cmds.ls("CHARLIE:*", type="mesh", noIntermediate=True)})
                if cmds.getAttr(m + ".visibility")]
 for f in range(1, N_FRAMES + 1):
     cmds.currentTime(f)
     pos = eyes[f] + forward * CAM_FORWARD - om.MVector(0, drop, 0)
-    target = bbox_center(VC) + om.MVector(0, AIM_UP, 0)
+    desk_target = om.MPoint(desk_center.x, desk_center.y + AIM_UP, desk_center.z)
+    if f <= GRAB_DST:
+        target = desk_target
+    else:
+        w = min(1.0, (f - GRAB_DST) / float(LIFT_END - GRAB_DST))
+        w = w * w * (3.0 - 2.0 * w)
+        hp = hold_point(f, hold_y)
+        target = desk_target + (om.MPoint(hp.x, hp.y + HOLD_AIM_UP, hp.z) - desk_target) * w
     dx, dy, dz = target.x - pos.x, target.y - pos.y, target.z - pos.z
     yaw = math.degrees(math.atan2(-dx, -dz))
     pitch = math.degrees(math.atan2(dy, math.hypot(dx, dz)))
@@ -266,6 +293,43 @@ for f in range(1, N_FRAMES + 1):
     for a, v in zip(("translateX", "translateY", "translateZ", "rotateX", "rotateY", "rotateZ"), t + r):
         cmds.setKeyframe(cam, attribute=a, time=f, value=v)
 cmds.filterCurve(cam + ".rotateX", cam + ".rotateY", cam + ".rotateZ", filter="euler")
+
+# 6b. Tawan 2026-10-02: grab the camcorder and lift it in front of the head, not pull it to the torso. After LIFT_START the camcorder rises from the
+# shelf to HOLD_DIST in front of the camera (it stays under the desktop, so it never crosses the valance) and the right arm follows it with IK.
+desk_t = om.MTransformationMatrix(desk_matrix).translation(om.MSpace.kWorld)
+for f in range(LIFT_START, N_FRAMES + 1):
+    s_ = min(1.0, (f - LIFT_START) / float(LIFT_END - LIFT_START))
+    s_ = s_ * s_ * (3.0 - 2.0 * s_)
+    _hp = hold_point(f, hold_y)
+    hold = om.MVector(_hp.x, _hp.y, _hp.z)
+    pos_f = om.MVector(desk_t.x, desk_t.y, desk_t.z) + (hold - om.MVector(desk_t.x, desk_t.y, desk_t.z)) * s_
+    tm = om.MTransformationMatrix(desk_matrix)
+    tm.setTranslation(pos_f, om.MSpace.kWorld)
+    cmds.currentTime(f)
+    cmds.xform(VC, ws=True, m=flat(tm.asMatrix()))
+    cmds.setKeyframe(VC, attribute=["translateX", "translateY", "translateZ"], time=f)
+cmds.filterCurve(VC + ".rotateX", VC + ".rotateY", VC + ".rotateZ", filter="euler")
+
+# right arm IK: the handle follows the wrist position that keeps the camcorder in the hand (wrist = offset.inverse() * camcorder)
+ARM, HAND_J = "CHARLIE:mixamorig:RightArm", HAND
+cmds.currentTime(GRAB_DST)
+if cmds.objExists("IK_Shot08_RightArm"):
+    cmds.delete("IK_Shot08_RightArm")
+ikh, eff = cmds.ikHandle(startJoint=ARM, endEffector=HAND_J, solver="ikRPsolver", name="IK_Shot08_RightArm")
+cmds.setAttr(ikh + ".visibility", 0)
+for f in range(GRAB_DST, N_FRAMES + 1):
+    cmds.currentTime(f)
+    wrist = om.MTransformationMatrix(offset.inverse() * mat(VC)).translation(om.MSpace.kWorld)
+    _s = min(1.0, max(0.0, (f - LIFT_START) / float(LIFT_END - LIFT_START)))
+    _s = _s * _s * (3.0 - 2.0 * _s)
+    _right = forward ^ om.MVector(0, 1, 0)
+    wrist = om.MVector(wrist.x, wrist.y, wrist.z) + _right * (HOLD_WRIST_RIGHT * _s) + om.MVector(0, -HOLD_WRIST_DOWN * _s, 0)
+    for a_, v_ in zip(("translateX", "translateY", "translateZ"), (wrist.x, wrist.y, wrist.z)):
+        cmds.setKeyframe(ikh, attribute=a_, time=f, value=v_)
+cmds.setKeyframe(ikh, attribute="ikBlend", time=GRAB_DST - 1, value=0.0)
+cmds.setKeyframe(ikh, attribute="ikBlend", time=GRAB_DST, value=1.0)
+cmds.keyTangent(ikh, attribute="ikBlend", inTangentType="linear", outTangentType="linear")
+print("L| arm IK", ikh, "on", ARM, "->", HAND_J, "from frame", GRAB_DST)
 
 # nearest visible Charlie vertex to the camera must be farther than the near clip plane
 worst = 1e9
@@ -309,9 +373,9 @@ FILL_KELVIN = 6500.0
 make_area("Shot08_Fill_Overhead", (-215.0, 262.0, 190.0), (-215.0, 0.0, 190.0), (130.0, 130.0), FILL_OVERHEAD_EXP)
 # small panel under the desktop right above the camcorder (31 units above the shelf): the shelf top is lit straight on instead of at a grazing angle
 make_area("Shot08_Fill_UnderDeskLamp", (CAMCORDER_POS[0] + 6.0, 104.0, CAMCORDER_POS[2]), (CAMCORDER_POS[0] + 6.0, 0.0, CAMCORDER_POS[2]), (35.0, 35.0), FILL_LAMP_EXP)
-# once the camcorder is out of the cavity the lamp is only 28 units from Charlie's belly and burns it to white (26% of pixels above 240 at frame 48): fade it 1.5 stops between frames 36 and 46 (2.5 left frame 44 at mean 27-39 once the cavity faces were lightened)
+# once the camcorder is out of the cavity the lamp is only 28 units from Charlie's belly and burns it to white (26% of pixels above 240 at frame 48): fade it 1.8 stops while the camcorder is lifted (-1.0 left 21-22% of the pixels above 240, -3.0 left the frame at mean 30-38) (it is then 12 units under the lamp) (2.5 left frame 44 at mean 27-39 once the cavity faces were lightened)
 cmds.cutKey("Shot08_Fill_UnderDeskLamp", attribute="exposure", clear=True)
-for kf, kv in ((1, FILL_LAMP_EXP), (36, FILL_LAMP_EXP), (46, FILL_LAMP_EXP - 1.5), (N_FRAMES, FILL_LAMP_EXP - 1.5)):
+for kf, kv in ((1, FILL_LAMP_EXP), (GRAB_DST, FILL_LAMP_EXP), (LIFT_END, FILL_LAMP_EXP - 1.8), (N_FRAMES, FILL_LAMP_EXP - 1.8)):
     cmds.setKeyframe("Shot08_Fill_UnderDeskLamp", attribute="exposure", time=kf, value=kv)
 cmds.keyTangent("Shot08_Fill_UnderDeskLamp", attribute="exposure", inTangentType="linear", outTangentType="linear")
 # 8. Lighter surfaces inside the cavity under the desktop (Tawan 2026-10-01: Shot 08 must be about as bright as Shot 09, mean 125).
