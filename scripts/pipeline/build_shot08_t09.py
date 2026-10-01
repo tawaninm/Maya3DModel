@@ -40,7 +40,7 @@ CAMCORDER_ROT = (0.0, -35.0, 0.0)
 CHAR_YAW = -90.0                                               # Charlie faces -X (towards the desk); Mixamo rigs face +Z at yaw 0
 
 FOCAL = 28.0
-NEAR_CLIP = 2.0
+NEAR_CLIP = 15.0   # the collapsed head leaves the hoodie 9.6-14 units from the camera in frames 38-48 (diag_shot08_nearclip.py); nothing else in frame is nearer than 15
 CAM_FORWARD = 4.0            # camera sits this far ahead of the eye point (head is collapsed, see step 6)
 SHELF_LIP_X = -217.3         # front edge of the desk unit (ray-cast 2026-10-01); the camcorder rests on the lower shelf (y 73.1) under the desktop (y 108.9-111.5)
 AIM_UP = 9.0                 # aim a little above the camcorder centre so it sits in the lower part of frame
