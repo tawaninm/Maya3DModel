@@ -45,6 +45,9 @@ CAM_FORWARD = 4.0            # camera sits this far ahead of the eye point (head
 SHELF_LIP_X = -217.3         # front edge of the desk unit (ray-cast 2026-10-01); the camcorder rests on the lower shelf (y 73.1) under the desktop (y 108.9-111.5)
 AIM_UP = 9.0                 # aim a little above the camcorder centre so it sits in the lower part of frame
 SHAKE_ROT, SHAKE_TRANS = 0.6, 0.6
+SHELF_TOP_Y = 73.1
+CAVITY_ALBEDO = (0.045, 0.042, 0.035)   # pale warm grey for the cavity faces (0.55 burned 80%+ of the frame to white; the original texels are near black)
+CAVITY_X_MAX = -228.0                # only count hits deeper than the front valance (x -217) so the valance keeps its own texture
 FILL_OVERHEAD_EXP, FILL_LAMP_EXP = 12.0, 11.5   # exposure of the overhead panel and of the under-desktop lamp (tuned with test frames 1, 22, 38, 44, 48)
 
 os.makedirs(BACKUP_DIR, exist_ok=True)
@@ -296,11 +299,61 @@ FILL_KELVIN = 6500.0
 make_area("Shot08_Fill_Overhead", (-215.0, 262.0, 190.0), (-215.0, 0.0, 190.0), (130.0, 130.0), FILL_OVERHEAD_EXP)
 # small panel under the desktop right above the camcorder (31 units above the shelf): the shelf top is lit straight on instead of at a grazing angle
 make_area("Shot08_Fill_UnderDeskLamp", (CAMCORDER_POS[0] + 6.0, 104.0, CAMCORDER_POS[2]), (CAMCORDER_POS[0] + 6.0, 0.0, CAMCORDER_POS[2]), (35.0, 35.0), FILL_LAMP_EXP)
-# once the camcorder is out of the cavity the lamp is only 28 units from Charlie's belly and burns it to white (26% of pixels above 240 at frame 48): fade it 2.5 stops between frames 36 and 46
+# once the camcorder is out of the cavity the lamp is only 28 units from Charlie's belly and burns it to white (26% of pixels above 240 at frame 48): fade it 1.5 stops between frames 36 and 46 (2.5 left frame 44 at mean 27-39 once the cavity faces were lightened)
 cmds.cutKey("Shot08_Fill_UnderDeskLamp", attribute="exposure", clear=True)
-for kf, kv in ((1, FILL_LAMP_EXP), (36, FILL_LAMP_EXP), (46, FILL_LAMP_EXP - 2.5), (N_FRAMES, FILL_LAMP_EXP - 2.5)):
+for kf, kv in ((1, FILL_LAMP_EXP), (36, FILL_LAMP_EXP), (46, FILL_LAMP_EXP - 1.5), (N_FRAMES, FILL_LAMP_EXP - 1.5)):
     cmds.setKeyframe("Shot08_Fill_UnderDeskLamp", attribute="exposure", time=kf, value=kv)
 cmds.keyTangent("Shot08_Fill_UnderDeskLamp", attribute="exposure", inTangentType="linear", outTangentType="linear")
+# 8. Lighter surfaces inside the cavity under the desktop (Tawan 2026-10-01: Shot 08 must be about as bright as Shot 09, mean 125).
+# Raising the furniture texture gain did nothing (the shelf and walls are near-black texels, test frames 66.6/74.6/27.6 vs 62.4/74.0/27.4), and more light
+# burns the hand and belly. So the faces that make up the cavity get a pale warm-grey shader in THIS shot file only (reference edit, env file untouched).
+# Faces are found with rays: shelf top (down), back wall and side walls (horizontal), cavity ceiling = underside of the desktop (up).
+_desk_shape = [s for s in cmds.ls("ENV:Prop_OfficeDesk_and_Drawers", long=True)][0]
+_desk_shape = cmds.listRelatives(_desk_shape, shapes=True, fullPath=True, noIntermediate=True)[0]
+_sel = om.MSelectionList()
+_sel.add(_desk_shape)
+_fn = om.MFnMesh(_sel.getDagPath(0))
+_cx, _cy, _cz = CAMCORDER_POS
+_faces = set()
+
+
+def _cast(origin, direction, y_lo, y_hi, max_dist, first_only, x_max=None):
+    r = _fn.allIntersections(om.MFloatPoint(*origin), om.MFloatVector(*direction), om.MSpace.kWorld, max_dist, False)
+    if not r or not len(r[0]):
+        return
+    hits = sorted(zip(r[1], r[2], [p.y for p in r[0]], [p.x for p in r[0]]))
+    for _t, face, y, x in hits:
+        if x_max is not None and x > x_max:
+            continue
+        if y_lo <= y <= y_hi:
+            _faces.add(face)
+            if first_only:
+                break
+
+
+for _x in range(-262, -214, 4):
+    for _z in range(int(_cz) - 40, int(_cz) + 41, 4):
+        _cast((_x, 100.0, _z), (0, -1, 0), SHELF_TOP_Y - 3.0, SHELF_TOP_Y + 3.0, 60.0, True)          # shelf top
+        _cast((_x, SHELF_TOP_Y + 3.0, _z), (0, 1, 0), 105.0, 112.0, 60.0, True)                       # cavity ceiling
+for _y in range(int(SHELF_TOP_Y) + 4, 108, 4):
+    for _z in range(int(_cz) - 40, int(_cz) + 41, 4):
+        _cast((_cx + 20.0, _y, _z), (-1, 0, 0), _y - 1.0, _y + 1.0, 120.0, True, CAVITY_X_MAX)                      # back wall
+    for _x in range(-262, -226, 6):
+        _cast((_x, _y, _cz), (0, 0, 1), _y - 1.0, _y + 1.0, 80.0, True)                                # side walls
+        _cast((_x, _y, _cz), (0, 0, -1), _y - 1.0, _y + 1.0, 80.0, True)
+print("L| cavity faces found:", len(_faces))
+if _faces:
+    _mat = cmds.shadingNode("aiStandardSurface", asShader=True, name="Shot08_CavityLight_M")
+    cmds.setAttr(_mat + ".baseColor", CAVITY_ALBEDO[0], CAVITY_ALBEDO[1], CAVITY_ALBEDO[2], type="double3")
+    cmds.setAttr(_mat + ".specular", 0.1)
+    _sg = cmds.sets(renderable=True, noSurfaceShader=True, empty=True, name="Shot08_CavityLight_SG")
+    cmds.connectAttr(_mat + ".outColor", _sg + ".surfaceShader", force=True)
+    try:
+        cmds.sets([_desk_shape + ".f[%d]" % f for f in sorted(_faces)], forceElement=_sg)
+        print("L| cavity shader assigned to", len(_faces), "faces, albedo", CAVITY_ALBEDO)
+    except Exception as e:
+        print("L| WARN could not assign the cavity shader:", e)
+
 o = "defaultArnoldRenderOptions"
 if cmds.objExists(o):
     cmds.setAttr(o + ".skipLicenseCheck", 0)
