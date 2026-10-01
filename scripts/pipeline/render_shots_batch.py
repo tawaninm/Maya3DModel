@@ -19,7 +19,7 @@ import time
 
 ROOT = r"D:\projects\ProjectAnimation"
 RENDER = r"D:\AutoDesk\Maya2027\bin\Render.exe"
-FRAMES = {"05": 24, "06": 72, "07": 72, "08": 48, "09": 72, "10": 48, "11": 72, "12": 48, "13": 48, "14": 24}  # plan.md shot table
+FRAMES = {"05": 48, "06": 72, "07": 72, "08": 48, "09": 72, "10": 48, "11": 72, "12": 48, "13": 48, "14": 24}  # plan.md shot table
 CHUNK = 6
 
 

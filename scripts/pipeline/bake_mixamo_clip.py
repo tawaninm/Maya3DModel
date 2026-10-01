@@ -19,7 +19,7 @@ def _dist(a, b):
     return sum((pa[i] - pb[i]) ** 2 for i in range(3)) ** 0.5
 
 
-def bake_clip(fbx, rig_ns="", src_first=0, src_last=None, dst_first=1, set_range=True):
+def bake_clip(fbx, rig_ns="", src_first=0, src_last=None, dst_first=1, set_range=True, time_scale=1.0):
     cmds.loadPlugin("fbxmaya", quiet=True)
     before_j = set(cmds.ls(type="joint"))
     before_c = set(cmds.ls(type="animCurve"))
@@ -40,6 +40,7 @@ def bake_clip(fbx, rig_ns="", src_first=0, src_last=None, dst_first=1, set_range
     cmds.currentTime(kt[0])
     rig_hips, rig_head = rig_ns + "mixamorig:Hips", rig_ns + "mixamorig:Head"
     ratio = _dist(rig_hips, rig_head) / max(1e-6, _dist(by_leaf["Hips"], by_leaf["Head"]))
+    n_dst = int(round((int(src_last) - int(src_first) + 1) * float(time_scale)))   # 24 source frames x 2.0 = 48; past the last key the pose holds
     n_keys, missing = 0, []
     for leaf, sj in by_leaf.items():
         dj = rig_ns + "mixamorig:" + leaf
@@ -49,9 +50,9 @@ def bake_clip(fbx, rig_ns="", src_first=0, src_last=None, dst_first=1, set_range
         for a in ATTRS:
             if not cmds.listConnections(sj + "." + a, s=True, d=False):
                 continue
-            for f in range(int(src_first), int(src_last) + 1):
-                v = cmds.getAttr(sj + "." + a, time=f)
-                cmds.setKeyframe(dj, attribute=a, time=f - int(src_first) + dst_first, value=v)
+            for k in range(n_dst):
+                v = cmds.getAttr(sj + "." + a, time=int(src_first) + k / float(time_scale))   # time_scale 2.0 = half speed
+                cmds.setKeyframe(dj, attribute=a, time=dst_first + k, value=v)
                 n_keys += 1
     # clean up: imported joints (roots first), leftover curves, new namespaces
     roots = [j for j in new_j if (cmds.listRelatives(j, parent=True) or [None])[0] not in new_j]
@@ -64,7 +65,7 @@ def bake_clip(fbx, rig_ns="", src_first=0, src_last=None, dst_first=1, set_range
     for ns in sorted(set(cmds.namespaceInfo(listOnlyNamespaces=True, recurse=True) or []) - before_ns, reverse=True):
         if cmds.namespace(exists=ns) and not (cmds.namespaceInfo(ns, listNamespace=True) or []):
             cmds.namespace(removeNamespace=ns)
-    n_frames = int(src_last) - int(src_first) + 1
+    n_frames = n_dst
     if set_range:
         cmds.playbackOptions(min=dst_first, max=dst_first + n_frames - 1, animationStartTime=dst_first, animationEndTime=dst_first + n_frames - 1)
     info = {"keys": n_keys, "frames": n_frames, "translate_scale_ratio": round(ratio, 3), "missing_dst_joints": missing,

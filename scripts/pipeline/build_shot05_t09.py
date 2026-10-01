@@ -2,7 +2,7 @@
 
 Steps: bake Stumble_Backwards (frames 0-23 -> 1-24) onto CHARLIE:mixamorig:*, place Charlie, hide the Monster (not in this shot),
 reset the camera (run 3 left a garbage local transform and two stray keys on CAM_Shot05), add handheld shake (expression on GRP_CAM_Shot05)
-and a crash zoom 24 -> 45 mm over the last 8 frames, print bounding boxes and a frustum test.
+and a crash zoom 24 -> 45 mm over the last 12 frames (37-48), print bounding boxes and a frustum test.
 Layout (cm): Charlie faces +Z, falls backwards towards -Z. Camera is in front of him at +Z, low (35 cm), 24 mm, looking slightly up.
 """
 import math
@@ -33,10 +33,11 @@ print("L| backup", bk)
 
 cmds.loadPlugin("mtoa", quiet=True)
 cmds.file(SHOT, open=True, force=True, loadReferenceDepth="all")
-cmds.playbackOptions(min=1, max=24, animationStartTime=1, animationEndTime=24)
+N_FRAMES = 48   # 2 s (plan A, Tawan 2026-10-01): Stumble_Backwards at half speed
+cmds.playbackOptions(min=1, max=N_FRAMES, animationStartTime=1, animationEndTime=N_FRAMES)
 
 # 1. bake Charlie animation
-bake_clip(CLIP, rig_ns="CHARLIE:", src_first=0, src_last=23, dst_first=1)
+bake_clip(CLIP, rig_ns="CHARLIE:", src_first=0, src_last=23, dst_first=1, time_scale=2.0)
 
 # 2. place Charlie and hide the Monster
 cmds.setAttr("CHARLIE:GRP_Charlie_Placement.translate", *CHAR_POS)
@@ -80,8 +81,8 @@ cmds.expression(name="EXPR_Shot05_Handheld", string=expr, alwaysEvaluate=True)
 # 5. crash zoom over the last 8 frames
 cmds.cutKey(shape, attribute="focalLength", clear=True)
 cmds.setAttr(shape + ".focalLength", 24)
-cmds.setKeyframe(shape, attribute="focalLength", time=16, value=24, inTangentType="linear", outTangentType="linear")
-cmds.setKeyframe(shape, attribute="focalLength", time=24, value=45, inTangentType="linear", outTangentType="linear")
+cmds.setKeyframe(shape, attribute="focalLength", time=37, value=24, inTangentType="linear", outTangentType="linear")
+cmds.setKeyframe(shape, attribute="focalLength", time=48, value=45, inTangentType="linear", outTangentType="linear")
 print("L| film fit", cmds.getAttr(shape + ".filmFit"), "hfa", cmds.getAttr(shape + ".horizontalFilmAperture"))
 
 # 6. measurements
@@ -115,13 +116,13 @@ def ndc(point):
     return (pc.x / -pc.z) * focal / h, (pc.y / -pc.z) * focal / (h / aspect)
 
 
-for f in range(1, 25):
+for f in range(1, N_FRAMES + 1):
     cmds.currentTime(f)
     res = {}
     for p in points:
         r = ndc(wpos(p))
         res[p.split(":")[-1]] = None if r is None else (round(r[0], 2), round(r[1], 2), abs(r[0]) <= 1 and abs(r[1]) <= 1)
-    if f in (1, 12, 24) or f % 6 == 0:
+    if f in (1, 24, 48) or f % 12 == 0:
         print("L| frustum f%02d focal %.1f" % (f, cmds.getAttr(shape + ".focalLength")), res)
         print("L| bbox f%02d Charlie meshes (xmin,ymin,zmin,xmax,ymax,zmax)" % f, vertex_bbox(mesh_tr))
 cmds.currentTime(1)
