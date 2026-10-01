@@ -197,6 +197,16 @@ for f in range(1, N_FRAMES + 1):
 # (skinned head vertices fold into one point) and hide the eye meshes, then the camera can sit at eye height.
 # ponytail: neck vertices that are partly weighted to Head fold into a small cone under the camera; check the test frames and
 # repaint weights (or use a head-less duplicate mesh) only if the cone shows in frame.
+# Late in the clip the head leans over the camcorder (src 44-48) and drags the eye-following camera down onto Charlie's torso: the picture jumps
+# (frame diff 58.7 at frame 48) and the sweater/skin burn to white (22% above 240). Let the camera position stop following the head from frame 43
+# and be fully still by frame 46; the aim still tracks the camcorder. Only frames 44-48 change.
+HOLD_FROM, HOLD_FULL = 43, 46
+for _f in range(HOLD_FROM + 1, N_FRAMES + 1):
+    _w = min(1.0, (_f - HOLD_FROM) / float(HOLD_FULL - HOLD_FROM))
+    _w = _w * _w * (3.0 - 2.0 * _w)
+    eyes[_f] = eyes[HOLD_FROM] + (eyes[_f] - eyes[HOLD_FROM]) * (1.0 - _w)
+print("L| camera position held from frame", HOLD_FROM, "to", HOLD_FULL)
+
 HEAD = "CHARLIE:mixamorig:Head"
 for ax in "XYZ":
     cmds.setAttr("%s.scale%s" % (HEAD, ax), 0.001)
