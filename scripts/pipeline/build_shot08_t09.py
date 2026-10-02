@@ -43,7 +43,7 @@ FOCAL = 28.0
 NEAR_CLIP = 15.0   # the collapsed head leaves the hoodie 9.6-14 units from the camera in frames 38-48 (diag_shot08_nearclip.py); nothing else in frame is nearer than 15
 CAM_FORWARD = 4.0            # camera sits this far ahead of the eye point (head is collapsed, see step 6)
 SHELF_LIP_X = -217.3         # front edge of the desk unit (ray-cast 2026-10-01); the camcorder rests on the lower shelf (y 73.1) under the desktop (y 108.9-111.5)
-AIM_UP = 9.0                 # aim a little above the camcorder centre so it sits in the lower part of frame
+AIM_UP = 6.0                 # aim above the shelf camcorder: -2 burned Charlie's lap white along the bottom (19% above 240), +9 shows more scalloped plate on top; 6 with the plates hidden
 SHAKE_ROT, SHAKE_TRANS = 0.6, 0.6
 SHELF_TOP_Y = 73.1
 LIFT_START, LIFT_END = GRAB_DST + 2, GRAB_DST + 10   # camcorder rests on the shelf until LIFT_START, is at the held pose by LIFT_END
@@ -52,6 +52,8 @@ HOLD_Y_CANDIDATES = (86.0, 82.0, 78.0)   # highest y with a clear line of sight 
 HOLD_WRIST_RIGHT, HOLD_WRIST_DOWN = 8.0, 7.0   # while lifted the wrist sits lower-right of the camcorder (screen space), so the forearm no longer runs along the view axis and hides it
 HOLD_AIM_UP = -3.0      # aim this far above (negative = below) the held camcorder; below keeps the valance edge out of the top of the frame
 CAVITY_ALBEDO = (0.045, 0.042, 0.035)   # pale warm grey for the cavity faces (0.55 burned 80%+ of the frame to white; the original texels are near black)
+VALANCE_RAY = 22.0                   # camera rays hide desk faces in y 85-111 within this distance of the lens (the back wall is ~37 away)
+VALANCE_X = (-222.0, -212.0)         # x window of the desk front panel / valance
 CAVITY_X_MAX = -228.0                # only count hits deeper than the front valance (x -217) so the valance keeps its own texture
 FILL_OVERHEAD_EXP, FILL_LAMP_EXP = 12.0, 11.5   # exposure of the overhead panel and of the under-desktop lamp (tuned with test frames 1, 22, 38, 44, 48)
 
@@ -427,6 +429,58 @@ if _faces:
         print("L| cavity shader assigned to", len(_faces), "faces, albedo", CAVITY_ALBEDO)
     except Exception as e:
         print("L| WARN could not assign the cavity shader:", e)
+
+# 9. Hide the desk's front valance in this shot (Tawan 2026-10-02: "ยังเห็นผมของ Charlie"). The brown-orange scalloped band hanging across the top of the
+# frame in frames 1-34 is the wood valance of the desk front (x about -217, y 92-109), not hair: the camera sits 4 units behind it. Its faces get a fully
+# transparent shader in THIS shot file only (reference edit, env untouched); transparent for camera and shadow rays.
+_val = set()
+for _y in range(78, 109, 3):
+    for _z in range(int(_cz) - 70, int(_cz) + 71, 3):
+        _r = _fn.allIntersections(om.MFloatPoint(-190.0, _y, _z), om.MFloatVector(-1, 0, 0), om.MSpace.kWorld, 60.0, False)
+        if not _r or not len(_r[0]):
+            continue
+        for _t, _face, _px, _py in sorted(zip(_r[1], _r[2], [p.x for p in _r[0]], [p.y for p in _r[0]])):
+            if VALANCE_X[0] <= _px <= VALANCE_X[1]:
+                _val.add(_face)
+                break
+# The valance has several layers (front, thickness, scallop edges) and some sit outside the x window above, so also hide every desk face that is the
+# thing hit in front of the lens (all layers): rays from the real camera through a grid of the frame at sample frames, within VALANCE_RAY units, y 85-107.5
+# (the desktop itself starts at y 108.9 and the cavity ceiling is handled above).
+_asp = cmds.getAttr("defaultResolution.width") / float(cmds.getAttr("defaultResolution.height"))
+_hh = cmds.getAttr(shape + ".horizontalFilmAperture") * 25.4 / 2.0
+_fl = cmds.getAttr(shape + ".focalLength")
+_n_region = len(_val)
+for _f in (1, 8, 16, 24, 28, 32, 36, 42, 48):
+    cmds.currentTime(_f)
+    _m = om.MMatrix(cmds.xform(cam, q=True, ws=True, m=True))
+    _o = wpos(cam)
+    for _ix in range(-8, 9):
+        for _iy in range(-5, 6):
+            _dx, _dy, _dz = (_ix / 8.0) * _hh / _fl, (_iy / 5.0) * (_hh / _asp) / _fl, -1.0
+            _d = om.MVector(_dx * _m.getElement(0, 0) + _dy * _m.getElement(1, 0) + _dz * _m.getElement(2, 0),
+                            _dx * _m.getElement(0, 1) + _dy * _m.getElement(1, 1) + _dz * _m.getElement(2, 1),
+                            _dx * _m.getElement(0, 2) + _dy * _m.getElement(1, 2) + _dz * _m.getElement(2, 2)).normal()
+            _r = _fn.allIntersections(om.MFloatPoint(_o.x, _o.y, _o.z), om.MFloatVector(_d.x, _d.y, _d.z), om.MSpace.kWorld, VALANCE_RAY, False)
+            if not _r or not len(_r[0]):
+                continue
+            for _t, _face, _py in sorted(zip(_r[1], _r[2], [p.y for p in _r[0]])):
+                if 85.0 <= _py <= 111.0:
+                    _val.add(_face)       # every layer of the valance/plates in the band, not only the first (the inner layer read as grey hair)
+                else:
+                    break
+print("L| valance faces from camera rays:", len(_val) - _n_region, "(region pass:", _n_region, ")")
+cmds.currentTime(1)
+print("L| valance faces found:", len(_val))
+if _val:
+    _vm = cmds.shadingNode("aiStandardSurface", asShader=True, name="Shot08_ValanceHidden_M")
+    cmds.setAttr(_vm + ".opacity", 0.0, 0.0, 0.0, type="double3")
+    _vsg = cmds.sets(renderable=True, noSurfaceShader=True, empty=True, name="Shot08_ValanceHidden_SG")
+    cmds.connectAttr(_vm + ".outColor", _vsg + ".surfaceShader", force=True)
+    try:
+        cmds.sets([_desk_shape + ".f[%d]" % f for f in sorted(_val)], forceElement=_vsg)
+        print("L| valance hidden on", len(_val), "faces")
+    except Exception as e:
+        print("L| WARN could not hide the valance:", e)
 
 o = "defaultArnoldRenderOptions"
 if cmds.objExists(o):
