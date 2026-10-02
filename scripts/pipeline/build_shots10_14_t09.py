@@ -136,7 +136,7 @@ def shot13():
     bake_loop(MONSTER, "monster", "Mutant_Run", N, 0, 21, in_place=True)
     X0, Z = -950.0, 525.0
     xc = lambda f: X0 - 7.1 * (f - 1)                                   # about 170 units/s
-    xm = lambda f: X0 + 110.0 - 6.3 * (f - 1)                           # about 150 units/s: slowly losing ground
+    xm = lambda f: X0 + 190.0 - 6.3 * (f - 1)                           # about 150 units/s: slowly losing ground
     key_placement(CHARLIE, range(1, N + 1), lambda f: (xc(f), FLOOR_Y, Z), lambda f: -90.0)
     key_placement(MONSTER, range(1, N + 1), lambda f: (xm(f), FLOOR_Y, Z), lambda f: -90.0)
     eyes = eye_points(CHARLIE, range(1, N + 1))
@@ -145,7 +145,7 @@ def shot13():
     set_lens(shape, 24.0, 15.0)
     w = lambda f: smooth((f - 6) / 14.0)
     key_camera(cam, range(1, N + 1), pos_fn=lambda f: (eyes[f].x - 4.0, eyes[f].y, eyes[f].z),
-               rot_fn=lambda f: (8.0 + (-4.0 - 8.0) * w(f), -90.0 + 180.0 * w(f)),                  # yaw -90 = looking back (+X), +90 = forward (-X)
+               rot_fn=lambda f: (-3.0 + (-4.0 + 3.0) * w(f), -90.0 + 180.0 * w(f)),                  # yaw -90 = looking back (+X), +90 = forward (-X)
                roll_fn=lambda f: 3.0 * math.sin(f * 0.5), shake_rot=1.6, shake_trans=1.2, seed=13.0)
     ok = report_frustum(cam, shape, "Monster head", lambda: MONSTER + "mixamorig:Head", (1, 4, 8))
     print("L| Monster visible while looking back:", ok)

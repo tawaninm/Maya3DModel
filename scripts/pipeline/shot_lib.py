@@ -98,9 +98,26 @@ def key_placement(ns, frames, pos_fn, yaw_fn):
     cmds.filterCurve(g + ".rotateY", filter="euler")
 
 
+def detach_referenced_curves(ns):
+    """Monster_Mixamo.mb ships with animation curves of its own (one key at frame 0, the T-pose). setKeyframe on a joint driven by such a REFERENCED curve
+    edits the referenced node, and that edit is not saved with the shot: the reopened scene shows the T-pose (Shots 12/13, found 2026-10-02).
+    Disconnect the referenced curves first so the bake creates new curves that live in the shot file."""
+    n = 0
+    for j in cmds.ls(ns + "mixamorig:*", type="joint"):
+        for a in CAM_ATTRS:
+            plug = j + "." + a
+            for c in cmds.listConnections(plug, s=True, d=False, type="animCurve") or []:
+                if cmds.referenceQuery(c, isNodeReferenced=True):
+                    cmds.disconnectAttr(c + ".output", plug)
+                    n += 1
+    print("L| detached %d referenced animation curves on %s" % (n, ns))
+    return n
+
+
 def bake_loop(ns, who, name, n_total, src_first, src_last, in_place, scale=1.0, dst_first=1):
     """bake a Mixamo clip onto the rig for n_total frames, repeating it if the clip is shorter; in_place freezes the hips X/Z travel
     (the placement group moves the character instead, so loops do not jump back)."""
+    detach_referenced_curves(ns)
     path = clip(who, name)
     clip_len = int(round((src_last - src_first + 1) * scale))
     done = 0
