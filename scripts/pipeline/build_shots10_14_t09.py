@@ -113,10 +113,10 @@ def shot12():
     key_placement(CHARLIE, range(1, N + 1), lambda f: (CX, FLOOR_Y, Z), lambda f: -90.0)       # starts facing -X, the turn ends facing +X (the Monster)
     key_placement(MONSTER, range(1, N + 1), lambda f: (MX, FLOOR_Y, Z), lambda f: -90.0)       # faces -X, towards Charlie
     cam, shape = camera_nodes("12")
-    set_lens(shape, 28.0, 5.0)
+    set_lens(shape, 24.0, 5.0)
     mid = (-1215.0, 75.0, Z)
-    # profile view from the south side (z 330): Charlie and the Monster side by side, whip pan from Charlie to the middle, Dutch angle
-    key_camera(cam, range(1, N + 1), pos_fn=lambda f: (-1215.0, 85.0, 330.0),
+    # profile view from the south side of the corridor (z 372; the south wall is at z 343, z 330 was behind it and rendered black): Charlie and the Monster side by side, whip pan from Charlie to the middle, Dutch angle
+    key_camera(cam, range(1, N + 1), pos_fn=lambda f: (-1215.0, 85.0, 372.0),
                aim_fn=lambda f: lerp3((CX, 70.0, Z), mid, smooth((f - 8) / 28.0)),
                roll_fn=lambda f: 10.0 + 6.0 * smooth((f - 1) / 47.0), shake_rot=1.0, shake_trans=0.8, seed=12.0)
     ok = report_frustum(cam, shape, "Charlie head", lambda: CHARLIE + "mixamorig:Head", (1, 17, 48))
@@ -184,7 +184,7 @@ def shot14():
     cam, shape = camera_nodes("14")
     set_lens(shape, 24.0, 5.0)
     t = lambda f: smooth((f - 1) / 35.0)
-    cpos = lambda f: lerp3((HX + 300.0, 215.0, HZ), (HX + 8.0, 238.0, HZ), t(f))
+    cpos = lambda f: lerp3((HX + 430.0, 170.0, HZ), (HX + 8.0, 238.0, HZ), t(f))
     target = lambda f: lerp3((px(f), 50.0, HZ), (HX, FLOOR_Y, HZ), t(f))
 
     def rot(f):
