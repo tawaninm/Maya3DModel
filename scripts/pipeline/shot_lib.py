@@ -28,7 +28,7 @@ def clip(who, name):
     return os.path.join(CLIPS, who, name + ".fbx")
 
 
-def open_shot(shot, n_frames):
+def open_shot(shot, n_frames, preset="B"):
     """restore the pristine scene from the backup (rerunnable), open it with all references, set range/units and the Arnold options"""
     src = os.path.join(ROOT, "scenes", "Shots", "Shot%s.mb" % shot)
     os.makedirs(BACKUP_DIR, exist_ok=True)
@@ -48,8 +48,12 @@ def open_shot(shot, n_frames):
         cmds.setAttr(o + ".lightLinking", 0)
         cmds.setAttr(o + ".shadowLinking", 0)
         cmds.setAttr(o + ".renderDevice", 0)
-    cmds.setAttr("ENV:LIGHT_MASTER.exposure", PRESET_B_EXPOSURE)   # Preset B (plan.md Q11): darker than A (13.0), flicker on
-    cmds.setAttr("ENV:LIGHT_MASTER.flickerEnable", 1.0)
+    if preset == "A":                                              # shots 05-09: steady bright light
+        cmds.setAttr("ENV:LIGHT_MASTER.exposure", 13.0)
+        cmds.setAttr("ENV:LIGHT_MASTER.flickerEnable", 0.0)
+    else:
+        cmds.setAttr("ENV:LIGHT_MASTER.exposure", PRESET_B_EXPOSURE)   # Preset B (plan.md Q11): darker than A (13.0), flicker on
+        cmds.setAttr("ENV:LIGHT_MASTER.flickerEnable", 1.0)
     for ns in ("VCAM", "VCAM1", "VCAM2"):
         if cmds.objExists(ns + ":VideoCamera_GRP"):
             cmds.setAttr(ns + ":VideoCamera_GRP.visibility", 0)
