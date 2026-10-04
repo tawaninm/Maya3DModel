@@ -1,0 +1,198 @@
+
+Starting "D:\AutoDesk\Maya2027\bin\mayabatch.exe"
+00:00:00   646MB         | log started Thu Oct  1 11:25:09 2026
+00:00:00   646MB         | Arnold 7.5.1.1 [db61e838] windows x86_64 icx-2025.2.0 oiio-2.6.3 osl-1.13.3 vdb-11.0.0 adlsdk-10.0.1.66 clmhub-3.3.0.15 rlm-17.0.1 optix-8.0.0 2026/04/15 04:45:19
+00:00:00   646MB         | running on LAPTOP-E8C2BGUC, pid=29288
+00:00:00   646MB         |  1 x AMD Ryzen 7 6800H with Radeon Graphics  (8 cores, 16 logical) with 15613MB
+00:00:00   646MB         |  NVIDIA driver version 596.21
+00:00:00   646MB         |  GPU 0: NVIDIA GeForce RTX 3050 Laptop GPU @ 1740MHz (compute 8.6) with 4095MB (3960MB available) (NVLink:0)
+00:00:00   646MB         |  Windows 10 (version 10.0, build 26300)
+00:00:00   646MB         |  soft limit for open files changed from 512 to 2048
+00:00:00   646MB         |  
+00:00:00   646MB         | Installing system handler with mask 255
+00:00:03   957MB         | [metadata] loading metadata file: C:\Program Files\Autodesk\Arnold\Maya2027\bin\arnold.mtd
+00:00:03   958MB         | loading plugins from C:\Program Files\Autodesk\Arnold\Maya2027\bin\..\plugins ...
+00:00:03   959MB         |  alembic_proc.dll: alembic uses Arnold 7.5.1.1
+00:00:03   985MB         |  usd_proc.dll: usd uses Arnold 7.5.1.1
+00:00:03   985MB         | loaded 2 plugins from 2 lib(s) in 0:00.01
+00:00:03   990MB         |  unloading 2 plugins
+00:00:03   990MB         |   closing alembic_proc.dll ...
+00:00:03   990MB         |   closing usd_proc.dll ...
+00:00:03   983MB         |  unloading plugins done
+00:00:03   983MB         | Arnold shutdown
+00:00:03   968MB         | Installing system handler with mask 0
+bifrostGraph::bifrostRiggingMenu: (kFailure): Unexpected Internal Failure
+Initialized VP2.0 renderer {
+  Version : 2016.11.62.12. Feature Level 5.
+  Adapter : NVIDIA GeForce RTX 3050 Laptop GPU/PCIe/SSE2
+  Vendor ID: 4318. Device ID : 5761
+  Driver : C:\WINDOWS\System32\DriverStore\FileRepository\u0383113.inf_amd64_9242eb4af0e982f6\B383140\atig6pxx.dll.dll:31.0.12024.2005.
+  API : OpenGL V.4.6.
+  Max texture size : 16384 * 16384.
+  Max texture coords : 32
+  Shader versions supported (Vertex: 5, Geometry: 5, Pixel 5).
+  Shader compiler profile : (Best card profile)
+  Active stereo support available : 0
+  GPU Memory Limit : 4096 MB.
+  CPU Memory Limit : 14832.4 MB.
+  MultiDraw consolidation : enabled
+}
+OpenCL evaluator is attempting to initialize OpenCL.
+Detected 2 OpenCL Platforms: 
+ 0: NVIDIA Corporation. NVIDIA CUDA. OpenCL 3.0 CUDA 13.2.73.
+ Supported extensions: cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_fp64 cl_khr_3d_image_writes cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll cl_nv_d3d10_sharing cl_khr_d3d10_sharing cl_nv_d3d11_sharing cl_nv_copy_opts cl_nv_create_buffer cl_khr_int64_base_atomics cl_khr_int64_extended_atomics cl_khr_device_uuid cl_khr_pci_bus_info cl_khr_external_semaphore cl_khr_external_memory cl_khr_external_semaphore_win32 cl_khr_external_memory_win32 cl_khr_semaphore 
+ Selected matching OpenCL Platform: NVIDIA Corporation NVIDIA CUDA OpenCL 3.0 CUDA 13.2.73.
+ 1: Advanced Micro Devices, Inc.. AMD Accelerated Parallel Processing. OpenCL 2.1 AMD-APP (3444.0).
+ Supported extensions: cl_khr_icd cl_khr_d3d10_sharing cl_khr_d3d11_sharing cl_khr_dx9_media_sharing cl_amd_event_callback cl_amd_offline_devices  
+OpenCL evaluator choosing OpenCL platform NVIDIA Corporation.
+OpenCL evaluator is unable to find a GPU device that can share VBOs with OpenGL.
+00:00:00  2930MB         | log started Thu Oct  1 11:25:23 2026
+00:00:00  2930MB         | Arnold 7.5.1.1 [db61e838] windows x86_64 icx-2025.2.0 oiio-2.6.3 osl-1.13.3 vdb-11.0.0 adlsdk-10.0.1.66 clmhub-3.3.0.15 rlm-17.0.1 optix-8.0.0 2026/04/15 04:45:19
+00:00:00  2930MB         | running on LAPTOP-E8C2BGUC, pid=29288
+00:00:00  2930MB         |  1 x AMD Ryzen 7 6800H with Radeon Graphics  (8 cores, 16 logical) with 15613MB
+00:00:00  2945MB         |  NVIDIA driver version 596.21
+00:00:00  2945MB         |  GPU 0: NVIDIA GeForce RTX 3050 Laptop GPU @ 1740MHz (compute 8.6) with 4095MB (3950MB available) (NVLink:0)
+00:00:00  2945MB         |  Windows 10 (version 10.0, build 26300)
+00:00:00  2945MB         |  soft limit for open files is set at 2048
+00:00:00  2945MB         |  
+00:00:00  2945MB         | Installing system handler with mask 255
+00:00:00  2954MB         | [metadata] loading metadata file: C:\Program Files\Autodesk\Arnold\Maya2027\bin\arnold.mtd
+00:00:00  2955MB         | loading plugins from C:\Program Files\Autodesk\Arnold\Maya2027\bin\..\plugins ...
+00:00:00  2955MB         |  alembic_proc.dll: alembic uses Arnold 7.5.1.1
+00:00:00  3002MB         |  usd_proc.dll: usd uses Arnold 7.5.1.1
+00:00:00  3002MB         | loaded 2 plugins from 2 lib(s) in 0:00.03
+maya2027 FlowRetopology Logs: C:/Users/tawan/AppData/Local/Autodesk/FlowGraphEngine/maya2027/2026-10-01/FlowRetopology_20261001T042519Z_29288.log
+maya2027 FlowWedging Logs: C:/Users/tawan/AppData/Local/Autodesk/FlowGraphEngine/maya2027/2026-10-01/FlowWedging_20261001T042522Z_29288.log
+Warning: line 1: Scene-Metadata is not supported for referenced files.
+Warning: line 1: Scene-Metadata is not supported for referenced files.
+Warning: line 1: Scene-Metadata is not supported for referenced files.
+Read 4 files in  0.39 seconds.
+Result: D:/projects/ProjectAnimation/scenes/Shots/Shot05.mb
+Warning: Found camera CAM_Shot05Shape5
+Exporting Arnold Scene...
+Updating Arnold Scene...
+00:00:04  3223MB         | log started Thu Oct  1 11:25:28 2026
+00:00:04  3223MB         | Arnold 7.5.1.1 [db61e838] windows x86_64 icx-2025.2.0 oiio-2.6.3 osl-1.13.3 vdb-11.0.0 adlsdk-10.0.1.66 clmhub-3.3.0.15 rlm-17.0.1 optix-8.0.0 2026/04/15 04:45:19
+00:00:04  3223MB         | host application: MtoA 5.6.1.1 459fb13c (HEAD) Maya 2027.1
+00:00:04  3223MB         | running on LAPTOP-E8C2BGUC, pid=29288
+00:00:04  3223MB         |  1 x AMD Ryzen 7 6800H with Radeon Graphics  (8 cores, 16 logical) with 15613MB
+00:00:04  3223MB         |  NVIDIA driver version 596.21
+00:00:04  3223MB         |  GPU 0: NVIDIA GeForce RTX 3050 Laptop GPU @ 1740MHz (compute 8.6) with 4095MB (3950MB available) (NVLink:0)
+00:00:04  3223MB         |  Windows 10 (version 10.0, build 26300)
+00:00:04  3223MB         |  soft limit for open files is set at 2048
+00:00:04  3223MB         |  
+Scene D:\projects\ProjectAnimation\scenes\Shots\Shot05.mb completed.
+00:01:06  3441MB         |   unloading 11 plugins
+00:01:06  3441MB         |    closing alembic_proc.dll ...
+00:01:06  3441MB         |    closing usd_proc.dll ...
+00:01:06  3434MB         |    closing hairPhysicalShader_shaders.dll ...
+00:01:06  3434MB         |    closing lookdevkit_shaders.dll ...
+00:01:06  3434MB         |    closing mtoa_shaders.dll ...
+00:01:06  3434MB         |    closing renderSetup_shaders.dll ...
+00:01:06  3434MB         |    closing xgenSpline_shaders.dll ...
+00:01:06  3434MB         |    closing mtoa_ParticleVolume_proc.dll ...
+00:01:06  3434MB         |    closing xgenSpline_procedural.dll ...
+00:01:06  3434MB         |    closing xgen_procedural.dll ...
+00:01:06  3434MB         |    closing arnold_bifrost.dll ...
+00:01:06  3434MB         |   unloading plugins done
+00:01:07  3434MB         |  Arnold shutdown
+00:01:07  3434MB         |  Installing system handler with mask 0
+
+Starting "D:\AutoDesk\Maya2027\bin\mayabatch.exe"
+00:00:00   645MB         | log started Thu Oct  1 11:26:41 2026
+00:00:00   645MB         | Arnold 7.5.1.1 [db61e838] windows x86_64 icx-2025.2.0 oiio-2.6.3 osl-1.13.3 vdb-11.0.0 adlsdk-10.0.1.66 clmhub-3.3.0.15 rlm-17.0.1 optix-8.0.0 2026/04/15 04:45:19
+00:00:00   645MB         | running on LAPTOP-E8C2BGUC, pid=27588
+00:00:00   645MB         |  1 x AMD Ryzen 7 6800H with Radeon Graphics  (8 cores, 16 logical) with 15613MB
+00:00:00   645MB         |  NVIDIA driver version 596.21
+00:00:00   645MB         |  GPU 0: NVIDIA GeForce RTX 3050 Laptop GPU @ 1740MHz (compute 8.6) with 4095MB (3960MB available) (NVLink:0)
+00:00:00   645MB         |  Windows 10 (version 10.0, build 26300)
+00:00:00   645MB         |  soft limit for open files changed from 512 to 2048
+00:00:00   645MB         |  
+00:00:00   645MB         | Installing system handler with mask 255
+00:00:02   956MB         | [metadata] loading metadata file: C:\Program Files\Autodesk\Arnold\Maya2027\bin\arnold.mtd
+00:00:02   958MB         | loading plugins from C:\Program Files\Autodesk\Arnold\Maya2027\bin\..\plugins ...
+00:00:02   958MB         |  alembic_proc.dll: alembic uses Arnold 7.5.1.1
+00:00:02   985MB         |  usd_proc.dll: usd uses Arnold 7.5.1.1
+00:00:02   985MB         | loaded 2 plugins from 2 lib(s) in 0:00.03
+00:00:03   990MB         |  unloading 2 plugins
+00:00:03   990MB         |   closing alembic_proc.dll ...
+00:00:03   990MB         |   closing usd_proc.dll ...
+00:00:03   983MB         |  unloading plugins done
+00:00:03   983MB         | Arnold shutdown
+00:00:03   968MB         | Installing system handler with mask 0
+bifrostGraph::bifrostRiggingMenu: (kFailure): Unexpected Internal Failure
+Initialized VP2.0 renderer {
+  Version : 2016.11.62.12. Feature Level 5.
+  Adapter : NVIDIA GeForce RTX 3050 Laptop GPU/PCIe/SSE2
+  Vendor ID: 4318. Device ID : 5761
+  Driver : C:\WINDOWS\System32\DriverStore\FileRepository\u0383113.inf_amd64_9242eb4af0e982f6\B383140\atig6pxx.dll.dll:31.0.12024.2005.
+  API : OpenGL V.4.6.
+  Max texture size : 16384 * 16384.
+  Max texture coords : 32
+  Shader versions supported (Vertex: 5, Geometry: 5, Pixel 5).
+  Shader compiler profile : (Best card profile)
+  Active stereo support available : 0
+  GPU Memory Limit : 4096 MB.
+  CPU Memory Limit : 14832.4 MB.
+  MultiDraw consolidation : enabled
+}
+OpenCL evaluator is attempting to initialize OpenCL.
+Detected 2 OpenCL Platforms: 
+ 0: NVIDIA Corporation. NVIDIA CUDA. OpenCL 3.0 CUDA 13.2.73.
+ Supported extensions: cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_fp64 cl_khr_3d_image_writes cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll cl_nv_d3d10_sharing cl_khr_d3d10_sharing cl_nv_d3d11_sharing cl_nv_copy_opts cl_nv_create_buffer cl_khr_int64_base_atomics cl_khr_int64_extended_atomics cl_khr_device_uuid cl_khr_pci_bus_info cl_khr_external_semaphore cl_khr_external_memory cl_khr_external_semaphore_win32 cl_khr_external_memory_win32 cl_khr_semaphore 
+ Selected matching OpenCL Platform: NVIDIA Corporation NVIDIA CUDA OpenCL 3.0 CUDA 13.2.73.
+ 1: Advanced Micro Devices, Inc.. AMD Accelerated Parallel Processing. OpenCL 2.1 AMD-APP (3444.0).
+ Supported extensions: cl_khr_icd cl_khr_d3d10_sharing cl_khr_d3d11_sharing cl_khr_dx9_media_sharing cl_amd_event_callback cl_amd_offline_devices  
+OpenCL evaluator choosing OpenCL platform NVIDIA Corporation.
+OpenCL evaluator is unable to find a GPU device that can share VBOs with OpenGL.
+00:00:00  2925MB         | log started Thu Oct  1 11:26:55 2026
+00:00:00  2925MB         | Arnold 7.5.1.1 [db61e838] windows x86_64 icx-2025.2.0 oiio-2.6.3 osl-1.13.3 vdb-11.0.0 adlsdk-10.0.1.66 clmhub-3.3.0.15 rlm-17.0.1 optix-8.0.0 2026/04/15 04:45:19
+00:00:00  2925MB         | running on LAPTOP-E8C2BGUC, pid=27588
+00:00:00  2925MB         |  1 x AMD Ryzen 7 6800H with Radeon Graphics  (8 cores, 16 logical) with 15613MB
+00:00:00  2941MB         |  NVIDIA driver version 596.21
+00:00:00  2941MB         |  GPU 0: NVIDIA GeForce RTX 3050 Laptop GPU @ 1740MHz (compute 8.6) with 4095MB (3950MB available) (NVLink:0)
+00:00:00  2941MB         |  Windows 10 (version 10.0, build 26300)
+00:00:00  2941MB         |  soft limit for open files is set at 2048
+00:00:00  2941MB         |  
+00:00:00  2941MB         | Installing system handler with mask 255
+00:00:00  2949MB         | [metadata] loading metadata file: C:\Program Files\Autodesk\Arnold\Maya2027\bin\arnold.mtd
+00:00:00  2951MB         | loading plugins from C:\Program Files\Autodesk\Arnold\Maya2027\bin\..\plugins ...
+00:00:00  2951MB         |  alembic_proc.dll: alembic uses Arnold 7.5.1.1
+00:00:00  2997MB         |  usd_proc.dll: usd uses Arnold 7.5.1.1
+00:00:00  2997MB         | loaded 2 plugins from 2 lib(s) in 0:00.03
+maya2027 FlowRetopology Logs: C:/Users/tawan/AppData/Local/Autodesk/FlowGraphEngine/maya2027/2026-10-01/FlowRetopology_20261001T042651Z_27588.log
+maya2027 FlowWedging Logs: C:/Users/tawan/AppData/Local/Autodesk/FlowGraphEngine/maya2027/2026-10-01/FlowWedging_20261001T042654Z_27588.log
+Warning: line 1: Scene-Metadata is not supported for referenced files.
+Warning: line 1: Scene-Metadata is not supported for referenced files.
+Warning: line 1: Scene-Metadata is not supported for referenced files.
+Read 4 files in  0.54 seconds.
+Result: D:/projects/ProjectAnimation/scenes/Shots/Shot05.mb
+Warning: Found camera CAM_Shot05Shape5
+Exporting Arnold Scene...
+Updating Arnold Scene...
+00:00:05  3218MB         | log started Thu Oct  1 11:27:01 2026
+00:00:05  3218MB         | Arnold 7.5.1.1 [db61e838] windows x86_64 icx-2025.2.0 oiio-2.6.3 osl-1.13.3 vdb-11.0.0 adlsdk-10.0.1.66 clmhub-3.3.0.15 rlm-17.0.1 optix-8.0.0 2026/04/15 04:45:19
+00:00:05  3218MB         | host application: MtoA 5.6.1.1 459fb13c (HEAD) Maya 2027.1
+00:00:05  3218MB         | running on LAPTOP-E8C2BGUC, pid=27588
+00:00:05  3218MB         |  1 x AMD Ryzen 7 6800H with Radeon Graphics  (8 cores, 16 logical) with 15613MB
+00:00:05  3218MB         |  NVIDIA driver version 596.21
+00:00:05  3218MB         |  GPU 0: NVIDIA GeForce RTX 3050 Laptop GPU @ 1740MHz (compute 8.6) with 4095MB (3950MB available) (NVLink:0)
+00:00:05  3218MB         |  Windows 10 (version 10.0, build 26300)
+00:00:05  3218MB         |  soft limit for open files is set at 2048
+00:00:05  3218MB         |  
+Scene D:\projects\ProjectAnimation\scenes\Shots\Shot05.mb completed.
+00:00:57  3437MB         |   unloading 11 plugins
+00:00:57  3437MB         |    closing alembic_proc.dll ...
+00:00:57  3437MB         |    closing usd_proc.dll ...
+00:00:57  3431MB         |    closing hairPhysicalShader_shaders.dll ...
+00:00:57  3431MB         |    closing lookdevkit_shaders.dll ...
+00:00:57  3431MB         |    closing mtoa_shaders.dll ...
+00:00:57  3431MB         |    closing renderSetup_shaders.dll ...
+00:00:57  3431MB         |    closing xgenSpline_shaders.dll ...
+00:00:57  3431MB         |    closing mtoa_ParticleVolume_proc.dll ...
+00:00:57  3431MB         |    closing xgenSpline_procedural.dll ...
+00:00:57  3430MB         |    closing xgen_procedural.dll ...
+00:00:57  3430MB         |    closing arnold_bifrost.dll ...
+00:00:57  3430MB         |   unloading plugins done
+00:00:57  3430MB         |  Arnold shutdown
+00:00:57  3430MB         |  Installing system handler with mask 0
