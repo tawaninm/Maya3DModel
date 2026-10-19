@@ -45,7 +45,7 @@ EXPECTED_SHOTS = [
     {"shot": "11", "frames": 72, "sec": 3, "preset": "B"},
     {"shot": "12", "frames": 48, "sec": 2, "preset": "B"},
     {"shot": "13", "frames": 48, "sec": 2, "preset": "B"},
-    {"shot": "14", "frames": 24, "sec": 1, "preset": "B"},
+    {"shot": "14", "frames": 48, "sec": 2, "preset": "B"},
 ]
 
 

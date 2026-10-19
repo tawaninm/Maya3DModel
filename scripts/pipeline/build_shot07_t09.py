@@ -4,7 +4,7 @@ Shot 07: Insert shot of the video camera resting on an office desk in Backrooms.
 Duration: 3 seconds = 72 frames (24 fps).
 Animation: None (static prop shot).
 Camera: Insert + medium high angle static, 40 mm lens, looking down at camcorder on desk.
-Lighting: Light Preset A with dedicated insert key light (exposure 15.5, 6500K) on defaultLightSet.
+Lighting: Light Preset A + desk_light_rig (overhead panel, under-desktop lamp, pale cavity shader), redone 2026-10-02 to match Shot 08.
 """
 import math
 import os
@@ -140,26 +140,13 @@ for c in cmds.ls(type="camera"):
     except:
         pass
 
-# 5. Dedicated Desk Key Light for Insert Shot (Preset A)
-light_name = "Shot07_Desk_KeyLight"
-if not cmds.objExists(light_name):
-    ls = cmds.shadingNode("aiAreaLight", asLight=True, name=light_name)
-    lt = cmds.listRelatives(ls, parent=True)[0] if cmds.nodeType(ls) != "transform" else ls
-else:
-    ls = light_name if cmds.nodeType(light_name) == "aiAreaLight" else cmds.listRelatives(light_name, shapes=True)[0]
-    lt = cmds.listRelatives(ls, parent=True)[0]
-
-cmds.xform(lt, ws=True, t=[-220.0, 180.0, 195.0], ro=[-60, 30, 0], s=[140.0, 140.0, 1.0])
-cmds.setAttr(ls + ".exposure", 15.5)
-cmds.setAttr(ls + ".intensity", 50.0)
-cmds.setAttr(ls + ".aiColorTemperature", 6500.0)
-cmds.setAttr(ls + ".aiUseColorTemperature", 1)
-
-# Ensure light is in defaultLightSet
-light_sets = cmds.listSets(object=ls) or []
-if "defaultLightSet" not in light_sets:
-    cmds.sets(ls, add="defaultLightSet")
-    print("L| added keylight to defaultLightSet")
+# 5. Desk lighting (Tawan 2026-10-02: Shot 07 redone to match Shot 08, bright desk). Replaces the single key light (exposure 15.5, mean 19/255)
+# with the shared rig: overhead panel + small lamp under the desktop above the camcorder + pale shader on the cavity faces.
+sys.path.insert(0, r"D:\projects\ProjectAnimation\scripts\pipeline")
+from desk_light_rig import apply_desk_rig
+if cmds.objExists("Shot07_Desk_KeyLight"):
+    cmds.delete(cmds.listRelatives("Shot07_Desk_KeyLight", parent=True) or "Shot07_Desk_KeyLight")
+apply_desk_rig(CAMCORDER_POS)
 
 # Arnold render options
 o = "defaultArnoldRenderOptions"
