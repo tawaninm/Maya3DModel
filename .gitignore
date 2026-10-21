@@ -12,10 +12,10 @@
 /docs/
 /images/
 /movies/
-/raw_assets/
-/scenes/
+/raw_assets/*
+/scenes/*
 /scripts/
-/sourceimages/
+/sourceimages/*
 /substance/
 /Backrooms_Furniture_Scene.ma
 /Backrooms_Furniture_Scene.mb
@@ -65,3 +65,16 @@ ehthumbs.db
 desktop.ini
 *.vscode/
 *.idea/
+
+# ------------------------------------------------------------------------------
+# Rigged Charlie v2 for the team (2026-10-21): only these files come back in from the ignored folders above
+# ------------------------------------------------------------------------------
+!/scenes/Characters/
+/scenes/Characters/*
+!/scenes/Characters/Charlie_Mixamo_v2.mb
+!/sourceimages/charlie_v2/
+/sourceimages/charlie_v2/*.tx
+!/raw_assets/mixamo/
+/raw_assets/mixamo/*
+!/raw_assets/mixamo/charlie_v2/
+/raw_assets/mixamo/charlie_v2/*.fbm/
