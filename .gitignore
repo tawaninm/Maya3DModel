@@ -9,13 +9,6 @@
 /.mayaSwatches/
 /Backrooms_Textures
 /Meshy_AI_Buff_Blobbell_0821154423_texture_fbx
-/docs/
-/images/
-/movies/
-/raw_assets/*
-/scenes/*
-/scripts/
-/sourceimages/*
 /substance/
 /Backrooms_Furniture_Scene.ma
 /Backrooms_Furniture_Scene.mb
@@ -67,14 +60,5 @@ desktop.ini
 *.idea/
 
 # ------------------------------------------------------------------------------
-# Rigged Charlie v2 for the team (2026-10-21): only these files come back in from the ignored folders above
-# ------------------------------------------------------------------------------
-!/scenes/Characters/
-/scenes/Characters/*
-!/scenes/Characters/Charlie_Mixamo_v2.mb
-!/sourceimages/charlie_v2/
-/sourceimages/charlie_v2/*.tx
-!/raw_assets/mixamo/
-/raw_assets/mixamo/*
-!/raw_assets/mixamo/charlie_v2/
-/raw_assets/mixamo/charlie_v2/*.fbm/
+# Each member's work lives in their own folder (Thanatpat/, Nannapas/, Wasawat/) and is tracked on purpose.
+# Arnold texture caches (*.tx) and *.avi stay ignored above.
