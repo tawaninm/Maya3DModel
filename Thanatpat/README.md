@@ -1,6 +1,6 @@
-# Tawan - Maya 3D Model & Animation Project
+# Thanatpat - Maya 3D Model & Animation Project
 
-**สมาชิกผู้รับผิดชอบ:** ธนัทภัทร พรหมทอง (Tawan)
+**สมาชิกผู้รับผิดชอบ:** ธนัทภัทร พรหมทอง (Thanatpat)
 **วิชา:** Computer Graphics and Animation (Section 01, Group 05)
 
 folder นี้เป็น Maya project ที่เปิดใช้ได้ด้วยตัวเอง รวมซีน โมเดล texture และไฟล์ที่ซีนอ้างถึงไว้ครบ ไม่แนบวิดีโอ
@@ -25,7 +25,7 @@ folder นี้เป็น Maya project ที่เปิดใช้ได�
 ## โครงสร้าง
 
 ```text
-Tawan/
+Thanatpat/
 ├── workspace.mel                 # ตั้งค่า Maya project
 ├── scenes/
 │   ├── Characters/               # Charlie_Mixamo_v2.mb, Monster_Mixamo.mb
@@ -38,7 +38,7 @@ Tawan/
 │   ├── Props_Export/             # OBJ/MTL ของพร็อพ (MTL อ้าง ../Backrooms_Textures/)
 │   └── ModelRef/                 # ภาพอ้างอิงที่ใช้เป็น image plane
 ├── raw_assets/mixamo/            # FBX ที่อัปโหลด/ดาวน์โหลดจาก Mixamo (charlie, charlie_v2, monster)
-├── scripts/                      # สคริปต์สร้างฉาก/rig/แสง (ใช้เครื่อง Tawan ไม่จำเป็นต่อการเปิดซีน)
+├── scripts/                      # สคริปต์สร้างฉาก/rig/แสง (ใช้เครื่อง Thanatpat ไม่จำเป็นต่อการเปิดซีน)
 │   ├── pipeline/                 # สคริปต์ชุดช็อต 05-14 (T01-T10)
 │   └── relink_project_paths.py   # แก้ path ในซีนให้เป็น relative
 ├── images/                       # ภาพพรีวิวและรายงานตรวจสอบ (images/checks)
@@ -49,23 +49,23 @@ Tawan/
 ## วิธีเปิดใน Autodesk Maya
 
 1. เปิด Maya 2024 ขึ้นไป
-2. `File -> Set Project...` เลือก folder `Tawan`
+2. `File -> Set Project...` เลือก folder `Thanatpat`
 3. `File -> Open Scene...` เลือกซีนจากตารางด้านบน
-4. ถ้ามีหน้าต่างแจ้ง texture หาย: `Windows -> General Editors -> File Path Editor` แล้ว Repath ไปที่ `Tawan/sourceimages/`
+4. ถ้ามีหน้าต่างแจ้ง texture หาย: `Windows -> General Editors -> File Path Editor` แล้ว Repath ไปที่ `Thanatpat/sourceimages/`
 
-## สิ่งที่ยังต้องทำ (Tawan)
+## สิ่งที่ยังต้องทำ (Thanatpat)
 
-1. **แก้ path ในซีน** ซีน `.mb` ทั้งหมดบันทึก path แบบ absolute `D:/projects/ProjectAnimation/...` ของเครื่อง Tawan เครื่องอื่นไม่มี path นี้ ให้รันบนเครื่องที่มี Maya หนึ่งครั้งแล้ว commit ซีนที่บันทึกใหม่:
+1. **แก้ path ในซีน** ซีน `.mb` ทั้งหมดบันทึก path แบบ absolute `D:/projects/ProjectAnimation/...` ของเครื่อง Thanatpat เครื่องอื่นไม่มี path นี้ ให้รันบนเครื่องที่มี Maya หนึ่งครั้งแล้ว commit ซีนที่บันทึกใหม่:
 
    ```powershell
-   mayapy Tawan\scripts\relink_project_paths.py            # ดูก่อนว่าจะแก้อะไร (dry run)
-   mayapy Tawan\scripts\relink_project_paths.py --apply    # แก้จริงและบันทึกทับ
+   mayapy Thanatpat\scripts\relink_project_paths.py            # ดูก่อนว่าจะแก้อะไร (dry run)
+   mayapy Thanatpat\scripts\relink_project_paths.py --apply    # แก้จริงและบันทึกทับ
    ```
 
-2. **เพิ่ม texture ที่ขาด** ก๊อปจาก `D:\projects\ProjectAnimation\sourceimages\Backrooms_Tiling\` มาไว้ที่ `Tawan/sourceimages/Backrooms_Tiling/`: `Carpet_Tile.png`, `Ceiling_Tile.png`, `Wall_Chevron.png` (ซีน `Backrooms_Env_v3.mb` ต้องใช้)
+2. **เพิ่ม texture ที่ขาด** ก๊อปจาก `D:\projects\ProjectAnimation\sourceimages\Backrooms_Tiling\` มาไว้ที่ `Thanatpat/sourceimages/Backrooms_Tiling/`: `Carpet_Tile.png`, `Ceiling_Tile.png`, `Wall_Chevron.png` (ซีน `Backrooms_Env_v3.mb` ต้องใช้)
 
 ## หมายเหตุ
 
-- สคริปต์ใน `scripts/` มี path ของเครื่อง Tawan (`D:\projects\ProjectAnimation`, `D:\AutoDesk\Maya2027`) ไว้รันซ้ำบนเครื่องเดิม ไม่ได้เกี่ยวกับการเปิดซีน
+- สคริปต์ใน `scripts/` มี path ของเครื่อง Thanatpat (`D:\projects\ProjectAnimation`, `D:\AutoDesk\Maya2027`) ไว้รันซ้ำบนเครื่องเดิม ไม่ได้เกี่ยวกับการเปิดซีน
 - วิดีโอ (playblast, showreel) ถูกเอาออกจาก repo ตามที่ตกลง ยังกู้ได้จาก git history ก่อน commit ที่จัดโครงสร้างนี้
 - ซีนช็อต `Shot05.mb` อยู่ใน `archive/Shots_WIP/` ซีนช็อตรุ่นล่าสุด Shot06-14 ยังไม่ได้ถูก commit (มีเฉพาะ backup รุ่น `before_t09` ใน `archive/`)

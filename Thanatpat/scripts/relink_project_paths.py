@@ -1,4 +1,4 @@
-"""Rewrite the absolute D:/projects/ProjectAnimation paths in Tawan's Maya scenes to project-relative paths.
+"""Rewrite the absolute D:/projects/ProjectAnimation paths in Thanatpat's Maya scenes to project-relative paths.
 
 Run once on the machine that has Maya, then commit the re-saved scenes:
 
