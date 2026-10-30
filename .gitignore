@@ -60,5 +60,5 @@ desktop.ini
 *.idea/
 
 # ------------------------------------------------------------------------------
-# Work folders (movies, images, scenes, sourceimages, raw_assets, scripts, docs) are tracked on purpose.
-# Arnold texture caches (*.tx) stay ignored above.
+# Each member's work lives in their own folder (Tawan/, Nannapas/, Wasawat/) and is tracked on purpose.
+# Arnold texture caches (*.tx) and *.avi stay ignored above.
