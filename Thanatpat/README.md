@@ -18,7 +18,7 @@ folder นี้เป็น Maya project ที่เปิดใช้ได�
 
 - `Backrooms_Furniture_Scene.mb`: ฉากพร้อมพร็อพและแสง Arnold
 - `Backrooms_Chase_Storyboard_Scene.mb`, `Backrooms_Monster_Animation_Scene.mb`: ซีนแอนิเมชันไล่ล่า อ้าง `scenes/Monster/Monster_Rigged.mb`
-- `Backrooms_Env_v3.mb`: รุ่นที่ใช้ในช็อต 05-14 ใช้ texture `sourceimages/Backrooms_Tiling/` อีก 3 ไฟล์ที่ **ยังไม่ได้อยู่ใน repo** (ดูหัวข้อ "สิ่งที่ยังต้องทำ")
+- `archive/Backrooms_needs_Tiling_textures/Backrooms_Env_v3.mb`: รุ่นที่ใช้ในช็อต 05-14 ต้องใช้ texture `Backrooms_Tiling/` 3 ไฟล์ที่ไม่เคยถูก commit (`Carpet_Tile.png`, `Ceiling_Tile.png`, `Wall_Chevron.png`) จึงไม่ได้ส่งเป็นงานหลัก
 
 ไม่มีไฟล์ Blender (`.blend`) ใน repo โมเดลทั้งหมดเป็น Maya (`.mb`) และ FBX/OBJ
 
@@ -30,7 +30,7 @@ Thanatpat/
 ├── scenes/
 │   ├── Characters/               # Charlie_Mixamo_v2.mb, Monster_Mixamo.mb
 │   ├── Monster/                  # MonsterMain.mb, Monster_Rigged.mb
-│   └── Backrooms/                # Backrooms_Env_v2/v3.mb และซีนฉาก/ไล่ล่า
+│   └── Backrooms/                # Backrooms_Env_v2.mb และซีนฉาก/ไล่ล่า
 ├── sourceimages/
 │   ├── charlie_v2/               # texture ของ Charlie v2
 │   ├── Meshy_AI_Buff_Blobbell_.../  # FBX และ texture ของ Monster
@@ -40,7 +40,7 @@ Thanatpat/
 ├── raw_assets/mixamo/            # FBX ที่อัปโหลด/ดาวน์โหลดจาก Mixamo (charlie, charlie_v2, monster)
 ├── scripts/                      # สคริปต์สร้างฉาก/rig/แสง (ใช้เครื่อง Thanatpat ไม่จำเป็นต่อการเปิดซีน)
 │   ├── pipeline/                 # สคริปต์ชุดช็อต 05-14 (T01-T10)
-│   └── relink_project_paths.py   # แก้ path ในซีนให้เป็น relative
+│   └── relink_project_paths.py   # ตัวเลือก: บันทึก path ในซีนใหม่ให้สะอาดเมื่อมี Maya
 ├── images/                       # ภาพพรีวิวและรายงานตรวจสอบ (images/checks)
 ├── docs/                         # เอกสารนำเสนอและสเปก
 └── archive/                      # backup ซีน, Shot WIP, ไฟล์ทดสอบ (ไม่จำเป็นต่อการตรวจ)
@@ -53,16 +53,13 @@ Thanatpat/
 3. `File -> Open Scene...` เลือกซีนจากตารางด้านบน
 4. ถ้ามีหน้าต่างแจ้ง texture หาย: `Windows -> General Editors -> File Path Editor` แล้ว Repath ไปที่ `Thanatpat/sourceimages/`
 
-## สิ่งที่ยังต้องทำ (Thanatpat)
+## สถานะ path ในซีน
 
-1. **แก้ path ในซีน** ซีน `.mb` ทั้งหมดบันทึก path แบบ absolute `D:/projects/ProjectAnimation/...` ของเครื่อง Thanatpat เครื่องอื่นไม่มี path นี้ ให้รันบนเครื่องที่มี Maya หนึ่งครั้งแล้ว commit ซีนที่บันทึกใหม่:
+ซีน `.mb` เดิมบันทึก path แบบ absolute `D:/projects/ProjectAnimation/...` ของเครื่อง Thanatpat ตอนนี้ถูกแทนที่ด้วย path แบบ relative กับ Maya project (`sourceimages/...`, `scenes/...`) ในซีนทั้ง 8 ไฟล์ใน `scenes/` ตรวจแล้วว่า path ทั้ง 142 รายการชี้ไปไฟล์ที่มีอยู่จริงใน folder นี้
 
-   ```powershell
-   mayapy Thanatpat\scripts\relink_project_paths.py            # ดูก่อนว่าจะแก้อะไร (dry run)
-   mayapy Thanatpat\scripts\relink_project_paths.py --apply    # แก้จริงและบันทึกทับ
-   ```
-
-2. **เพิ่ม texture ที่ขาด** ก๊อปจาก `D:\projects\ProjectAnimation\sourceimages\Backrooms_Tiling\` มาไว้ที่ `Thanatpat/sourceimages/Backrooms_Tiling/`: `Carpet_Tile.png`, `Ceiling_Tile.png`, `Wall_Chevron.png` (ซีน `Backrooms_Env_v3.mb` ต้องใช้)
+- ใน path จะมีเครื่องหมาย `/` ซ้ำกันหลายตัว (เช่น `sourceimages/////charlie_v2/...`) เพราะการแก้ใช้ข้อความความยาวเท่าเดิมเพื่อไม่ให้โครงสร้างไฟล์ binary เปลี่ยน ใช้งานได้ปกติ
+- ภาพอ้างอิง `ModelRef` 2 ภาพที่ใช้เป็น image plane ใน `MonsterMain.mb`, `Monster_Rigged.mb`, `Monster_Mixamo.mb` (`24.png`, `sec01_group05 (1).png`) ยังชี้ `D:/sec01_group05 (1)/` อยู่ ภาพอ้างอิงนี้ไม่ส่งผลต่อโมเดลและการเรนเดอร์
+- การแก้ทำนอก Maya ยังไม่ได้ทดสอบเปิดใน Maya จริง ถ้าซีนใดเปิดไม่ได้ ให้ย้อนด้วย `git revert` ของ commit ที่แก้ path แล้วใช้ `scripts/relink_project_paths.py` บนเครื่องที่มี Maya แทน
 
 ## หมายเหตุ
 
